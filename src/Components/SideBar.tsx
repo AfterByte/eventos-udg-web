@@ -6,7 +6,7 @@ type SideBarProps = {
   signedIn: boolean;
 };
 const SideBar = () => {
-  return (<div className="bg-indigo-500">
+  return (<div className="w-full h-screen bg-indigo-500">
         {true ? 
         <div className="flex flex-col m-auto mt-48 w-3/5">
           <img src={logo} alt="" />

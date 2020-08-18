@@ -5,6 +5,7 @@ import { AuthContext } from './AuthProvider';
 import EventosudgApiClient from '../helpers/apiClient';
 // Views imports
 import LoginView from '../Views/LoginView';
+import UpcomingEvents from '../Views/UpcomingEvents';
 
 const AuthNavigator = () => {
   return (
@@ -19,7 +20,7 @@ const AppNavigator = () => {
   return (
     <Switch>
       {/* TODO: Define component for the /events route */}
-      <Route path='/events' component={} />
+      <Route path='/events' component={UpcomingEvents} />
     </Switch>
   );
 }
