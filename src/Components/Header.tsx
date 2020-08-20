@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import NotificationIcon from '../assets/icons/notifications.svg'
 import Perfil from '../Components/Perfil'
-
+import Menu from '../assets/icons/menu.svg'
 interface props{
   userName: string,
-  barTitle: string
+  barTitle: string,
+  sidebarHidden: boolean,
+  changeHidden: any
 }
 
 export default class Header extends Component<props> {
   render() {
     return (
       <div className="col-start-2 col-end-7 grid xl:grid-cols-2 md:grid-cols-2 grid-cols-2 shadow-md text-center md:w-auto max-h-auto items-center py-2 sm:py-5 bg-white">
-        <div className="text-center font-medium text-2xl md:text-right">
+        <div className="text-center font-medium text-2xl md:text-right flex justify-between">
+          <button onClick={this.props.changeHidden}><img id="sideBarShow" className="h-8 ml-2 sm:hidden" src={Menu} alt={"MenuIcon"}/></button>
           <p>{this.props.barTitle}</p>
         </div>
         <div className="grid grid-cols-3 sm:grid-cols-4 items-center">

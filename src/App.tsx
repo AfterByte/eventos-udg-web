@@ -4,7 +4,6 @@ import LoginView from './Views/LoginView'
 import UpcomingEvents from './Views/UpcomingEvents'
 import EventosudgApiClient from './helpers/apiClient';
 
-import Menu from './Components/Menu';
 const App = () => {
   const client = new EventosudgApiClient('http://167.172.196.165/');
   const [signedIn, setSignedIn] = useState(false);
@@ -19,7 +18,7 @@ const App = () => {
                                       ]);
 
   return (
-    <div className="bg-indigo-500 bg-opacity-50 h-auto">
+    <div className="">
       {false ? <div>
         <LoginView/>
       </div>

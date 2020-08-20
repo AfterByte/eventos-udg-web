@@ -5,9 +5,9 @@ import Menu from "./Menu"
 type SideBarProps = {
   signedIn: boolean;
 };
-const SideBar = () => {
+const SideBar = (props: any) => {
   return (<div className="w-full h-screen bg-indigo-500">
-        {true ? 
+        {false ? 
         <div className="flex flex-col m-auto mt-48 w-3/5">
           <img src={logo} alt="" />
           <h1 className="text-center underline text-2xl font-bold text-white">
@@ -15,8 +15,8 @@ const SideBar = () => {
           </h1>
         </div>
         :
-        <div className="flex flex-col m-auto mt-48 w-3/5">
-            <Menu/>
+        <div className="flex flex-col m-auto ml-4 w-full h-full">
+            <Menu changeHidden={props.changeHidden}/>
         </div>
         }
       </div>);
