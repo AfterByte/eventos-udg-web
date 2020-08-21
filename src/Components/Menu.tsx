@@ -1,48 +1,45 @@
 import React from "react";
-import Event from '../assets/icons/event.svg';
-import myEvents from '../assets/icons/myEvents.svg';
-import createEvent from '../assets/icons/createEvent.svg';
-import ticket from '../assets/icons/ticket.svg';
-import nextEvent from '../assets/icons/nextEvent.svg';
-import udgSvg from '../Images/udgL.png';
-import menu from '../assets/icons/menu.svg'
+import Event from "../assets/icons/event.svg";
+import myEvents from "../assets/icons/myEvents.svg";
+import createEvent from "../assets/icons/createEvent.svg";
+import ticket from "../assets/icons/ticket.svg";
+import nextEvent from "../assets/icons/nextEvent.svg";
+import udgSvg from "../Images/udgL.png";
+import menu from "../assets/icons/menu.svg";
 
-
-function proxEvent(){
-    alert("Thi is por next eventos")
+function proxEvent() {
+  alert("Thi is por next eventos");
 }
-function NewEvent(){
-    alert("This is for new Events")
+function NewEvent() {
+  alert("This is for new Events");
 }
-function Entry(){
-  alert("mis entradas perros")
+function Entry() {
+  alert("mis entradas perros");
 }
-function myEvent(){
-  alert("Mis eventos perros")
+function myEvent() {
+  alert("Mis eventos perros");
 }
-function allEvent(){
-  alert("All events")
-  
+function allEvent() {
+  alert("All events");
 }
-
-
 
 const Menu = (props: any) => {
-  
   return (
     <div className="">
       <ul className="">
         <li className="flex underline text-xl font-medium text-center text-white font-sans ">
-          <button onClick={props.changeHidden}><img id="sideBarShow" className="h-8 ml-2 sm:hidden" 
-          src={menu} 
-          alt={"MenuIcon"}
-          style={{ filter: "invert(100%)" }}
-          /></button>
+          <button onClick={props.changeHidden}>
+            <img
+              id="sideBarShow"
+              className="h-8 ml-2 sm:hidden"
+              src={menu}
+              alt={"MenuIcon"}
+              style={{ filter: "invert(100%)" }}
+            />
+          </button>
           <img className="hidden sm:w-1/5 " src={udgSvg} alt={"SortIcon"} />
           Eventos UDG
-          
         </li>
-
 
         <button onClick={proxEvent}>
           <li className="flex text-white mt-8 font-sans text-center">
@@ -68,7 +65,7 @@ const Menu = (props: any) => {
               alt={"SortIcon"}
               style={{ filter: "invert(100%)" }}
             />
-            <button onClick={NewEvent}>Crear eventos</button>
+            Crear eventos
           </li>
         </button>
 
