@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../Images/udgL.png";
 import Menu from "./Menu";
+
+import { AuthContext, AuthProviderPayload } from "./AuthProvider";
 
 type SideBarProps = {
   signedIn: boolean;
 };
+
+
 const SideBar = (props: any) => {
+  
+  const {apiClient} = useContext(AuthContext) as AuthProviderPayload;
+
   return (
     <div className="w-full h-screen bg-indigo-500">
-      {false ? (
+      {!apiClient.tokenLoaded ? (
         <div className="flex flex-col m-auto mt-48 w-3/5">
           <img src={logo} alt="" />
           <h1 className="text-center underline text-2xl font-bold text-white">

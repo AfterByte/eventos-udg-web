@@ -100,7 +100,7 @@ export default class EventosudgApiClient {
     });
     // Remove token from storage and memory on successful sign out
     let json: object = {};
-    if (response.body) json = await response.json();
+    if (response.status!=204)  json = await response.json();
     const result = { body: json, status: response.status };
     if (response.status < 300) {
       this.token = "";

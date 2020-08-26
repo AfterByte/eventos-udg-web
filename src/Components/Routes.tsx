@@ -6,6 +6,7 @@ import {
   Redirect,
   useHistory,
 } from "react-router-dom";
+
 // Helpers imports
 import { AuthContext, AuthProviderPayload } from "./AuthProvider";
 // Views imports
