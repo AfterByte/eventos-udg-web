@@ -12,6 +12,7 @@ import { AuthContext, AuthProviderPayload } from "./AuthProvider";
 // Views imports
 import LoginView from "../Views/LoginView";
 import UpcomingEvents from "../Views/UpcomingEvents";
+import SampleView from "../Views/SampleView";
 // Mock data
 import { events } from "../helpers/mockData";
 
@@ -39,6 +40,7 @@ const AppNavigator = () => {
           events={events}
         />
       </Route>
+      <Route path="/samplemaps" component={SampleView} />
     </Switch>
   );
 };
