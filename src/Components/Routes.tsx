@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, createContext, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,7 +13,9 @@ import { AuthContext, AuthProviderPayload } from "./AuthProvider";
 import LoginView from "../Views/LoginView";
 import UpcomingEvents from "../Views/UpcomingEvents";
 import SampleView from "../Views/SampleView";
+import LocationView from "../Views/LocationView";
 // Mock data
+import { Event } from "./EventCard";
 import { events } from "../helpers/mockData";
 
 const AuthNavigator = () => {
@@ -27,21 +29,36 @@ const AuthNavigator = () => {
 };
 
 // Add all app routes here!
+export const ResponsiveContext = createContext({});
+export type RespContextPayload = {
+  toggleSidebar(): void;
+  sidebarHidden: boolean;
+};
 const AppNavigator = () => {
+  const [sidebarHidden, setSidebarHidden] = useState(false);
+
+  const payload: RespContextPayload = {
+    toggleSidebar: () => {
+      return setSidebarHidden(!sidebarHidden);
+    },
+    sidebarHidden: sidebarHidden,
+  };
+
   return (
-    <Switch>
-      {/* TODO: Define component for the /events route */}
-      <Redirect exact from="/signin" to="/" />
-      <Redirect exact from="/" to="/events" />
-      <Route path="/events">
-        <UpcomingEvents
-          userName={"USER"}
-          barTitle={"Próximos eventos"}
-          events={events}
-        />
-      </Route>
-      <Route path="/samplemaps" component={SampleView} />
-    </Switch>
+    <ResponsiveContext.Provider value={payload}>
+      <Switch>
+        {/* TODO: Define component for the /events route */}
+        <Redirect exact from="/signin" to="/" />
+        <Redirect exact from="/" to="/events" />
+        <Route path="/events">
+          <UpcomingEvents events={events as Event[]} />
+        </Route>
+        <Route path="/location">
+          <LocationView />
+        </Route>
+        <Route path="/samplemaps" component={SampleView} />
+      </Switch>
+    </ResponsiveContext.Provider>
   );
 };
 

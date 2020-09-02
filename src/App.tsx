@@ -4,10 +4,12 @@ import "./assets/main.css";
 import Routes from "./Components/Routes";
 import AuthProvider from "./Components/AuthProvider";
 
+
 const App = () => {
   return (
+    
     <AuthProvider>
-      <Routes />
+      <Routes/>
     </AuthProvider>
   );
 };

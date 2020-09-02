@@ -1,11 +1,13 @@
 import React from "react";
+import Link from "react-router-dom";
+/**ICONS IMPORTS */
 import Event from "../assets/icons/event.svg";
 import myEvents from "../assets/icons/myEvents.svg";
 import createEvent from "../assets/icons/createEvent.svg";
 import ticket from "../assets/icons/ticket.svg";
 import nextEvent from "../assets/icons/nextEvent.svg";
+import location from "..//assets/icons/location.svg";
 import udgSvg from "../Images/udgL.png";
-import menu from "../assets/icons/menu.svg";
 
 function proxEvent() {
   alert("Thi is por next eventos");
@@ -23,91 +25,113 @@ function allEvent() {
   alert("All events");
 }
 
-const Menu = (props: any) => {
+/**Menu component
+ * Redirect to the corresponding sections of each button
+ * this component works for all components with side bar
+ */
+const Menu = () => {
   return (
     <div className="">
-      <ul className="">
-        <li className="flex underline text-xl font-medium text-center text-white font-sans ">
-          <button onClick={props.changeHidden}>
-            <img
-              id="sideBarShow"
-              className="h-8 ml-2 sm:hidden"
-              src={menu}
-              alt={"MenuIcon"}
-              style={{ filter: "invert(100%)" }}
-            />
-          </button>
-          <img className="hidden sm:w-1/5 " src={udgSvg} alt={"SortIcon"} />
-          Eventos UDG
+      <ul className="w-full">
+        <li className="border-b-2 m-8 text-center">
+          <div className="flex">
+            <img className="w-16 pb-3 " src={udgSvg} alt={"SortIcon"} />
+            <h1 className="mt-4 text-3xl font-bold text-center text-white font-sans ">
+              Eventos UDG
+            </h1>
+          </div>
         </li>
 
-        <button onClick={proxEvent}>
-          <li className="flex text-white mt-8 font-sans text-center">
-            <img
-              src={Event}
-              alt={"SortIcon"}
-              style={{ filter: "invert(100%)" }}
-            />
+        <li className="flex text-white mt-8 m-8 pl-12 font-sans text-center">
+          <img
+            src={Event}
+            alt={"SortIcon"}
+            style={{ filter: "invert(100%)" }}
+          />
+          <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0">
             Proximos Eventos
-          </li>
-        </button>
+          </button>
+        </li>
 
-        <li>
-          <h1 className="underline mt-8 text-x font-medium text-left text-white font-sans ">
+        <li className="border-b-2 m-8">
+          <h1 className="mt-8 text-x font-semibold text-left text-white font-sans ">
             Organizar eventos
           </h1>
         </li>
 
-        <button onClick={NewEvent}>
-          <li className="flex text-white text-center font-sans">
-            <img
-              src={createEvent}
-              alt={"SortIcon"}
-              style={{ filter: "invert(100%)" }}
-            />
+        <li className="flex text-white text-center font-sans mt-4 m-8 pl-12">
+          <img
+            src={createEvent}
+            alt={"SortIcon"}
+            style={{ filter: "invert(100%)" }}
+          />
+          <button
+            className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0 ml-6"
+            onClick={NewEvent}
+          >
             Crear eventos
-          </li>
-        </button>
+          </button>
+        </li>
 
-        <li className="flex text-white font-sans text-center">
+        <li className="flex text-white font-sans text-center m-8 mt-4 pl-12">
           <img
             src={myEvents}
             alt={"SortIcon"}
             style={{ filter: "invert(100%)" }}
           />
-          <button onClick={myEvent}>Mis eventos</button>
+          <button
+            className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0 ml-6"
+            onClick={myEvent}
+          >
+            Mis eventos
+          </button>
         </li>
 
-        <li>
-          <h1 className="underline mt-8 text-left text-white font-sans ">
+        <li className="border-b-2 m-8 ">
+          <h1 className="mt-8 text-left font-semibold text-white font-sans ">
             Mis entradas
           </h1>
         </li>
 
-        <li className="flex text-white font-sans text-center">
+        <li className="flex text-white font-sans text-center mt-4 m-8 pl-12">
           <img
             src={ticket}
             alt={"SortIcon"}
             style={{ filter: "invert(100%)" }}
-          />{" "}
-          <button onClick={Entry}>Entradas</button>
+          />
+          <button
+            className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0 ml-6"
+            onClick={Entry}
+          >
+            Entradas
+          </button>
         </li>
 
-        <li>
-          <h1 className="underline mt-8 text-x font-medium text-left text-white font-sans ">
+        <li className="border-b-2 border-white m-8">
+          <h1 className="mt-8 text-x font-semibold text-left text-white font-sans  ">
             Opciones de administrador
           </h1>
         </li>
-        <button onClick={allEvent}>
-          <li className="flex text-white font-sans text-center">
-            <img
-              src={nextEvent}
-              alt={"SortIcon"}
-              style={{ filter: "invert(100%)" }}
-            />
+
+        <li className="flex text-white font-sans text-center m-8 mt-4 pl-12">
+          <img
+            src={nextEvent}
+            alt={"SortIcon"}
+            style={{ filter: "invert(100%)" }}
+          />
+          <button
+            className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0"
+            onClick={allEvent}
+          >
             Ver todos los eventos
-          </li>
-        </button>
+          </button>
+        </li>
+        <li className="flex text-white font-sans text-center m-8 mt-4 pl-12">
+          <img src={location} alt={"SortIcon"} />
+          <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0">
+            Ubicaciones
+          </button>
+        </li>
       </ul>
     </div>
   );
