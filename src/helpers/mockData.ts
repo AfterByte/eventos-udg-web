@@ -50,3 +50,105 @@ export const events = [
     maxCapacity: 31,
   },
 ];
+
+export const locations = [
+  {
+    id: 1,
+    name: "CUSur: Auditorio Gonzáles Ochoa",
+    location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
+    capacity: 160,
+    isAllowed: false,
+    isEnabled: true,
+    lat: 19.725539,
+    lng: -103.461508,
+    organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
+  },
+  {
+    id: 2,
+    name: "CUSur: Auditorio Gonzáles Ochoa 2",
+    location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
+    capacity: 160,
+    isAllowed: true,
+    isEnabled: false,
+    lat: 19.725539,
+    lng: -103.461508,
+    organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
+  },
+  {
+    id: 3,
+    name: "Location 3",
+    location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
+    capacity: 160,
+    isAllowed: false,
+    isEnabled: true,
+    lat: 19.725539,
+    lng: -103.461508,
+    organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
+  },
+  {
+    id: 4,
+    name: "CUSur: Auditorio Gonzáles Ochoa",
+    location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
+    capacity: 160,
+    isAllowed: false,
+    isEnabled: true,
+    lat: 19.725539,
+    lng: -103.461508,
+    organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
+  },
+  {
+    id: 5,
+    name: "CUSur: Auditorio Gonzáles Ochoa 2",
+    location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
+    capacity: 160,
+    isAllowed: false,
+    isEnabled: true,
+    lat: 19.725539,
+    lng: -103.461508,
+    organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
+  },
+  {
+    id: 6,
+    name: "Location 3",
+    location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
+    capacity: 160,
+    isAllowed: false,
+    isEnabled: true,
+    lat: 19.725539,
+    lng: -103.461508,
+    organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
+  },
+  {
+    id: 7,
+    name: "CUSur: Auditorio Gonzáles Ochoa",
+    location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
+    capacity: 160,
+    isAllowed: false,
+    isEnabled: true,
+    lat: 19.725539,
+    lng: -103.461508,
+    organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
+  },
+  {
+    id: 8,
+    name: "CUSur: Auditorio Gonzáles Ochoa 2",
+    location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
+    capacity: 160,
+    isAllowed: false,
+    isEnabled: true,
+    lat: 19.725539,
+    lng: -103.461508,
+    organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
+  },
+  {
+    id: 9,
+    name: "Location 3",
+    location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
+    capacity: 160,
+    isAllowed: false,
+    isEnabled: true,
+    lat: 19.725539,
+    lng: -103.461508,
+    organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
+  },
+];

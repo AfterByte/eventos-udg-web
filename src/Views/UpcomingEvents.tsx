@@ -21,7 +21,7 @@ const UpcomingEvents = ({ events }: EventProps) => {
       <div className="grid grid-cols-6 h-screen">
         <div
           className={
-            sidebarHidden
+            !sidebarHidden
               ? "hidden sm:grid sm:col-span-1 sm:fixed sm:h-full sm:z-20 sm:w-1/6"
               : "col-span-6 sm:grid sm:col-span-1 z-20 sm:fixed h-full"
           }
