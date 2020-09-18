@@ -1,5 +1,14 @@
 import React from "react";
-import Link from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  useHistory,
+  Link,
+} from "react-router-dom";
+/**COMPONENTS */
+import LocationView from "../Views/LocationView";
 /**ICONS IMPORTS */
 import Event from "../assets/icons/event.svg";
 import myEvents from "../assets/icons/myEvents.svg";
@@ -49,7 +58,7 @@ const Menu = () => {
             style={{ filter: "invert(100%)" }}
           />
           <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0">
-            Proximos Eventos
+            <Link to="/">Proximos eventos</Link>
           </button>
         </li>
 
@@ -128,8 +137,9 @@ const Menu = () => {
         </li>
         <li className="flex text-white font-sans text-center m-8 mt-4 pl-12">
           <img src={location} alt={"SortIcon"} />
+
           <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0">
-            Ubicaciones
+            <Link to="/location">Ubicaciones</Link>
           </button>
         </li>
       </ul>
