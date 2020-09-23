@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import "@reach/combobox/styles.css";
 import Marker from "../Components/Marker";
@@ -16,14 +16,31 @@ type MapsProps = {
   marker: IMarker | undefined;
 };
 
+fetch("http://ip-api.com/json/?fields=lat,lon")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (myJson) {
+    console.log(myJson);
+  });
+
 const Maps = ({ marker }: MapsProps) => {
+  const [loading, setLoading] = useState(true);
+  const [center, setCenter] = useState<{ lat: number; lng: number }>();
+  useEffect(() => {
+    const center = async () => {
+      if (loading) {
+        const response = await fetch("http://ip-api.com/json/?fields=lat,lon");
+        const location = await response.json();
+        setCenter({ lat: location.lat, lng: location.lon });
+        setLoading(false);
+      }
+    };
+    center();
+  });
   const mapConfig = {
-    center: {
-      /**TODO: CHANGE */
-      lat: 19.704939,
-      lng: -103.457813,
-    },
-    zoom: 11,
+    center,
+    zoom: 10,
   };
 
   let color = "#779BE7";
@@ -41,8 +58,6 @@ const Maps = ({ marker }: MapsProps) => {
           bootstrapURLKeys={{
             key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string | "",
           }}
-          defaultCenter={mapConfig.center}
-          defaultZoom={mapConfig.zoom}
           center={mapConfig.center}
           zoom={mapConfig.zoom}
         >

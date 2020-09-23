@@ -18,22 +18,6 @@ import nextEvent from "../assets/icons/nextEvent.svg";
 import location from "..//assets/icons/location.svg";
 import udgSvg from "../Images/udgL.png";
 
-function proxEvent() {
-  alert("Thi is por next eventos");
-}
-function NewEvent() {
-  alert("This is for new Events");
-}
-function Entry() {
-  alert("mis entradas perros");
-}
-function myEvent() {
-  alert("Mis eventos perros");
-}
-function allEvent() {
-  alert("All events");
-}
-
 /**Menu component
  * Redirect to the corresponding sections of each button
  * this component works for all components with side bar
@@ -74,10 +58,7 @@ const Menu = () => {
             alt={"SortIcon"}
             style={{ filter: "invert(100%)" }}
           />
-          <button
-            className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0 ml-6"
-            onClick={NewEvent}
-          >
+          <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0 ml-6">
             Crear eventos
           </button>
         </li>
@@ -88,10 +69,7 @@ const Menu = () => {
             alt={"SortIcon"}
             style={{ filter: "invert(100%)" }}
           />
-          <button
-            className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0 ml-6"
-            onClick={myEvent}
-          >
+          <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0 ml-6">
             Mis eventos
           </button>
         </li>
@@ -108,10 +86,7 @@ const Menu = () => {
             alt={"SortIcon"}
             style={{ filter: "invert(100%)" }}
           />
-          <button
-            className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0 ml-6"
-            onClick={Entry}
-          >
+          <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0 ml-6">
             Entradas
           </button>
         </li>
@@ -128,10 +103,7 @@ const Menu = () => {
             alt={"SortIcon"}
             style={{ filter: "invert(100%)" }}
           />
-          <button
-            className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0"
-            onClick={allEvent}
-          >
+          <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0">
             Ver todos los eventos
           </button>
         </li>

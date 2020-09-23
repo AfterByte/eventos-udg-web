@@ -6,6 +6,8 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 
+const endpoint = "http://ip-api.com/json/?fields=lat,lon";
+
 type SearchProps = {
   setMarker(marker: IMarker): void;
   setAddress(address: string): void;
