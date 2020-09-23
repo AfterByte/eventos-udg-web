@@ -53,7 +53,7 @@ export const events = [
 
 export const locations = [
   {
-    id: 1,
+    id: 0,
     name: "CUSur: Auditorio Gonzáles Ochoa",
     location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
     capacity: 160,
@@ -64,7 +64,7 @@ export const locations = [
     organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
   },
   {
-    id: 2,
+    id: 1,
     name: "CUSur: Auditorio Gonzáles Ochoa 2",
     location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
     capacity: 160,
@@ -75,8 +75,19 @@ export const locations = [
     organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
   },
   {
-    id: 3,
+    id: 2,
     name: "Location 3",
+    location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva"},
+    capacity: 90,
+    isAllowed: false,
+    isEnabled: true,
+    lat: 19.725539,
+    lng: -103.461508,
+    organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
+  },
+  {
+    id: 3,
+    name: "CUSur: Auditorio Gonzáles Ochoa",
     location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
     capacity: 160,
     isAllowed: false,
@@ -87,7 +98,7 @@ export const locations = [
   },
   {
     id: 4,
-    name: "CUSur: Auditorio Gonzáles Ochoa",
+    name: "CUSur: Auditorio Gonzáles Ochoa 2",
     location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
     capacity: 160,
     isAllowed: false,
@@ -98,7 +109,7 @@ export const locations = [
   },
   {
     id: 5,
-    name: "CUSur: Auditorio Gonzáles Ochoa 2",
+    name: "Location 3",
     location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
     capacity: 160,
     isAllowed: false,
@@ -109,17 +120,6 @@ export const locations = [
   },
   {
     id: 6,
-    name: "Location 3",
-    location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
-    capacity: 160,
-    isAllowed: false,
-    isEnabled: true,
-    lat: 19.725539,
-    lng: -103.461508,
-    organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
-  },
-  {
-    id: 7,
     name: "CUSur: Auditorio Gonzáles Ochoa",
     location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
     capacity: 160,
@@ -130,7 +130,7 @@ export const locations = [
     organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
   },
   {
-    id: 8,
+    id: 7,
     name: "CUSur: Auditorio Gonzáles Ochoa 2",
     location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
     capacity: 160,
@@ -141,7 +141,7 @@ export const locations = [
     organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
   },
   {
-    id: 9,
+    id: 8,
     name: "Location 3",
     location: {city:"Ciudad Guzmán", state:"Jalisco", address:"Av. Enrique Arreola Silva #833, Col. Centro"},
     capacity: 160,
@@ -152,3 +152,30 @@ export const locations = [
     organizers: ["CUSur","tecnologico de Piedras Negras", "El cachas"]
   },
 ];
+
+export const campuses = [
+  {
+    id:1,
+    name: "Centro Universitario del Sur",
+    campus: "Campus Cd. Guzmán",
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.cntraveler.com%2Fphotos%2F56953c34e17ca74e420e0a3b%2Fmaster%2Fw_1024%2Cc_limit%2FGettyImages-University-of-Chicago-Matt-Frankel-correced.jpg&f=1&nofb=1"
+  },
+  {
+    id:2,
+    name: "Centro Universitario de Consti",
+    campus: "Campus America",
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.cntraveler.com%2Fphotos%2F56953c34e17ca74e420e0a3b%2Fmaster%2Fw_1024%2Cc_limit%2FGettyImages-University-of-Chicago-Matt-Frankel-correced.jpg&f=1&nofb=1"
+  },
+  {
+    id:3,
+    name: "Centro Universitario de Piedras negras",
+    campus: "Campus Melaque",
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.cntraveler.com%2Fphotos%2F56953c34e17ca74e420e0a3b%2Fmaster%2Fw_1024%2Cc_limit%2FGettyImages-University-of-Chicago-Matt-Frankel-correced.jpg&f=1&nofb=1"
+  },
+  {
+    id:4,
+    name: "Centro Universitario de las Pecas",
+    campus: "Campus Puerto Vallarta",
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.cntraveler.com%2Fphotos%2F56953c34e17ca74e420e0a3b%2Fmaster%2Fw_1024%2Cc_limit%2FGettyImages-University-of-Chicago-Matt-Frankel-correced.jpg&f=1&nofb=1"
+  }
+]

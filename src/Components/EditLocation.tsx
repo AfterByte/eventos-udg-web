@@ -10,7 +10,7 @@ import Ask from "../assets/icons/ask.svg";
 import { geocodeByAddress } from "react-places-autocomplete";
 import { setConstantValue } from "typescript";
 
-const CreateLocation = ({
+const EditLocation = ({
   address,
   setFieldValue,
 }: {
@@ -123,4 +123,4 @@ const CreateLocation = ({
     </div>
   );
 };
-export default CreateLocation;
+export default EditLocation;
