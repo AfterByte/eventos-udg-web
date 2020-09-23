@@ -58,7 +58,7 @@ const Menu = () => {
             style={{ filter: "invert(100%)" }}
           />
           <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0">
-            <Link to="/">Proximos eventos</Link>
+            <Link to="/events">Proximos eventos</Link>
           </button>
         </li>
 
@@ -139,7 +139,7 @@ const Menu = () => {
           <img src={location} alt={"SortIcon"} />
 
           <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0">
-            <Link to="/location">Ubicaciones</Link>
+            <Link to="/locations">Ubicaciones</Link>
           </button>
         </li>
       </ul>

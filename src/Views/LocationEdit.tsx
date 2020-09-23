@@ -4,11 +4,10 @@ import Header from "../Components/Header";
 import Taskbar from "../Components/TaskBar";
 import SideBar from "../Components/SideBar";
 import { ResponsiveContext, RespContextPayload } from "../Components/Routes";
-import CreateLocation from "../Components/CreateLocation";
-import Maps from "../Components/Maps";
 
-const LocationView = (props: any) => {
+export default function LocationEdit() {
   const { sidebarHidden } = useContext(ResponsiveContext) as RespContextPayload;
+
   return (
     <div className="h-full">
       <div className="grid grid-cols-6 h-screen">
@@ -25,7 +24,7 @@ const LocationView = (props: any) => {
           <div className="fixed z-10 w-full">
             <div className="grid grid-cols-6">
               <div className="col-span-6 sm:col-start-2 sm:col-end-7">
-                <Header barTitle={"Crear Ubicación"} />
+                <Header barTitle={"Editar Ubicación"} />
                 <Taskbar />
               </div>
             </div>
@@ -36,13 +35,12 @@ const LocationView = (props: any) => {
 
         {!sidebarHidden ? (
           <div className="col-span-4 sm:col-start-2 sm:col-end-7 w-full h-full pt-24 sm:pt-24 z-0 pb-24 sm:pb-12 bg-indigo-500 bg-opacity-50">
-            <MapComponent isCreate={true}/>
+            <MapComponent isCreate={false}/>
           </div>
         ) : (
           <div className="hidden"></div>
         )}
       </div>
     </div>
-  );
-};
-export default LocationView;
+  )
+}

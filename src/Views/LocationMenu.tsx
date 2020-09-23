@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 //import external components
 import SideBar from '../Components/SideBar'
 import Header from '../Components/Header'
@@ -62,7 +63,7 @@ export default function LocationMenu(props: props) {
               <div className="col-span-12 sm:col-start-1 sm:col-end-8 gap-4 grid sm:grid-cols-1 grid-cols-1 mt-8 pb-1">
                 
                 <button className="fixed z-10 bg-white rounded-full shadow-lg bottom-0 right-0 mr-4 mb-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">
-                  <img className="w-12 h-12" src={addIcon} alt="AddIcon"/>
+                  <Link to="/createLocation"><img className="w-12 h-12" src={addIcon} alt="AddIcon"/></Link>
                 </button>
                 
                 {props.locations.map(location => (
@@ -87,7 +88,7 @@ export default function LocationMenu(props: props) {
                         : <p className="hidden xl:grid text-sm xl:text-base pt-6">Esta ubicación no es administrada por Eventos UDG</p>}
                         <div className="flex justify-between pt-2 xl:pt-0 xl:grid xl:justify-center">
                           <div>
-                            <button className="font-small px-1 py-1 xl:font-medium text-white xl:mt-12 xl:px-8 xl:py-2 bg-blue-500 rounded-md shadow-sm transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">Ver ubicación</button>
+                            <Link to={`/LocationDetails/${idLocation}`}><button className="font-small px-1 py-1 xl:font-medium text-white xl:mt-12 xl:px-8 xl:py-2 bg-blue-500 rounded-md shadow-sm transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">Ver ubicación</button></Link>
                           </div>
                           <div>
                             <button onClick={() => changeDeleteMessage()} className="font-small px-1 py-1 xl:font-medium text-white xl:mt-4 xl:px-4 xl:py-2 bg-red-500 rounded-md shadow-sm transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">Eliminar ubicación</button>

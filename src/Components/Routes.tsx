@@ -16,9 +16,12 @@ import SampleView from "../Views/SampleView";
 //import LocationView from "../Views/LocationView";
 import LocationMenu from "../Views/LocationMenu"
 import LocationDetails from "../Views/LocationDetails"
+import LocationView from "../Views/LocationView";
+import LocationEdit from "../Views/LocationEdit";
+import CampusesMenu from "../Views/CampusesMenu";
 // Mock data
 import { Event } from "./EventCard";
-import { events, locations } from "../helpers/mockData";
+import { events, locations, campuses } from "../helpers/mockData";
 
 const AuthNavigator = () => {
   const { apiClient } = useContext(AuthContext) as AuthProviderPayload;
@@ -60,7 +63,10 @@ const AppNavigator = () => {
         </Route>*/}
         <Route path="/samplemaps" component={SampleView} />
         <Route path="/locations"><LocationMenu locations={locations}/></Route>
-        <Route path="/locationDetails"><LocationDetails location={locations[1]}/></Route>
+        <Route exact path="/locationDetails/:id"><LocationDetails/></Route>
+        <Route path="/createLocation"><LocationView/></Route>
+        <Route path="/editLocation/:id"><LocationEdit/></Route>
+        <Route path="/campuses"><CampusesMenu campuses={campuses}/></Route>
       </Switch>
     </ResponsiveContext.Provider>
   );

@@ -1,4 +1,5 @@
 import React, { Component, useContext, Children, useEffect, useState } from "react";
+import { Link, useRouteMatch, useParams } from "react-router-dom";
 import SideBar from "../Components/SideBar";
 import Header from "../Components/Header";
 import DeleteMessage from '../Components/DeleteMessage'
@@ -12,20 +13,20 @@ import Help from '../assets/icons/help.svg'
 import Search from '../assets/icons/search-black.svg'
 import Clear from '../assets/icons/clear-black.svg'
 
+import { locations } from "../helpers/mockData";
+
 import { ResponsiveContext, RespContextPayload } from "../Components/Routes";
 
-interface propsLocation{
-  location: {
-    id: number, 
-    name: string, 
-    location: {city: string, state: string, address: string}, 
-    capacity: number, 
-    isAllowed: boolean,
-    isEnabled: boolean,
-    lat: number,
-    lng: number,
-    organizers: string[]
-  }
+interface location{
+  id: number, 
+  name: string, 
+  location: {city: string, state: string, address: string}, 
+  capacity: number, 
+  isAllowed: boolean,
+  isEnabled: boolean,
+  lat: number,
+  lng: number,
+  organizers: string[]
 }
 
 interface formValues {
@@ -37,23 +38,25 @@ interface formValues {
 }
 
 
-export default function LocationDetails(props:propsLocation) {
+export default function LocationDetails() {
   const { sidebarHidden } = useContext(ResponsiveContext) as RespContextPayload;
   const [ showMessage, setShowMessage ] = useState(false);
+  const [ idLocation, setIdLocation ] = useState<{id:number}>(useParams());
+  const [ location, setLocation ] = useState<location>(locations[idLocation.id]);
 
   const changeDeleteMessage = () => {
     setShowMessage(!showMessage);
   }
 
   const convertLocation = () => {
-    return `${props.location.location.city}, ${props.location.location.state}, ${props.location.location.address}`
+    return `${location.location.city}, ${location.location.state}, ${location.location.address}`
   }
 
   //for google map
   const mapConfig = {
     center: {
-      lat: props.location.lat,
-      lng: props.location.lng
+      lat: location.lat,
+      lng: location.lng
     },
     zoom: 17,
   };
@@ -86,9 +89,9 @@ export default function LocationDetails(props:propsLocation) {
           <div className="col-span-6 sm:col-start-2 sm:col-end-7 w-full h-full pt-24 sm:pt-24 z-0 pb-24 sm:pb-0 bg-indigo-500 bg-opacity-50">
             <Formik
               initialValues={{
-                name: props.location.name,
+                name: location.name,
                 location: convertLocation(), 
-                capacity: props.location.capacity,
+                capacity: location.capacity,
                 isAllowed: false,
                 isEnabled: false,
               }}
@@ -133,8 +136,8 @@ export default function LocationDetails(props:propsLocation) {
                       defaultZoom={mapConfig.zoom}
                     >
                       <Marker
-                        lat={props.location.lat}
-                        lng={props.location.lng}
+                        lat={location.lat}
+                        lng={location.lng}
                         name="My Marker"
                         color="#779BE7"
                       />
@@ -142,7 +145,7 @@ export default function LocationDetails(props:propsLocation) {
                   </div>
 
                   <div className="col-span-6 ml-2">
-                    {props.location.isAllowed
+                    {location.isAllowed
                     ? <p className="text-lg">Esta ubicación si es administrada por UDG</p>
                     : <p className="text-lg">Esta ubicación no es administrada por UDG</p>}
                     <div className="grid grid-cols-12 my-4">
@@ -152,7 +155,7 @@ export default function LocationDetails(props:propsLocation) {
                   </div>
 
                   <div className="col-span-6 ml-2">
-                    {props.location.isEnabled
+                    {location.isEnabled
                     ? <p className="text-lg">La ubicación se encuentra habilitada</p>
                     : <p className="text-lg">La ubicación se encuentra deshabilitada temporalmente</p>}
                     <div className="grid grid-cols-12 my-4">
@@ -164,10 +167,10 @@ export default function LocationDetails(props:propsLocation) {
                   {/* buttons */}
                   <div className="col-span-6 ml-2 mt-20 mb-8 grid grid-cols-12 gap-4">
                     <div className="col-span-12 xl:col-span-3 text-center">
-                      <button className="bg-gray-500 text-white font-medium py-1 px-12 rounded-md transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">Volver</button>
+                      <Link to="/locations"><button className="bg-gray-500 text-white font-medium py-1 px-12 rounded-md transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">Volver</button></Link>
                     </div>
                     <div className="col-span-12 xl:col-span-6 text-center">
-                      <button className="bg-blue-500 text-white text-xl font-medium py-1 px-12 rounded-md transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">Editar</button>
+                      <Link to={`/editLocation/${location.id}`}><button className="bg-blue-500 text-white text-xl font-medium py-1 px-12 rounded-md transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">Editar</button></Link>
                     </div>
                     <div className="col-span-12 xl:col-span-3 text-center">
                       <button onClick={() => changeDeleteMessage()} className="bg-red-500 text-white font-medium py-1 px-12 rounded-md transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">Eliminar</button>
@@ -201,7 +204,7 @@ export default function LocationDetails(props:propsLocation) {
 
                   {/* organizers list */}
                   <div className="col-span-2 grid grid-cols-6 gap-4 mt-6 ml-2 mr-2">
-                    {props.location.organizers.map(organizers =>
+                    {location.organizers.map((organizers) =>
                       <div className="col-span-3 py-2 flex justify-between items-center border border-gray-500">
                         <p className="text-center pl-2">{organizers}</p>
                         <button><img className="h-6" src={Clear} alt={"ClearTagIcon"}/></button>
