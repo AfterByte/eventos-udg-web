@@ -4,7 +4,8 @@ import ThrowImage from "../assets/images/Throw_away.svg"
 import Clear from '../assets/icons/clear-black.svg'
 
 interface props{
-  changeDeleteMessage: any
+  changeDeleteMessage: any,
+  objectToEliminate: string
 }
 
 export default function DeleteMessage(props:props) {
@@ -30,8 +31,13 @@ export default function DeleteMessage(props:props) {
                 <img className="h-8" src={Clear} alt={"ClearTagIcon"}/>
               </button>
             </div>
-            <p className="text-lg xl:pt-16 pb-2">¿Estas seguro de que deseas eliminar la ubicacion?</p>
-            <button className="font-small px-1 py-1 xl:font-medium text-white xl:mt-4 xl:px-4 xl:py-2 bg-red-500 rounded-md shadow-sm transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">Eliminar ubicación</button>
+            {(props.objectToEliminate === "ubicación") 
+            ? <p className="text-lg xl:pt-16 pb-2">¿Estas seguro de que deseas eliminar la {props.objectToEliminate}?</p>
+            : (props.objectToEliminate === "campus") 
+            ? <p className="text-lg xl:pt-16 pb-2">¿Estas seguro de que deseas eliminar el {props.objectToEliminate}?</p>
+            : <p>OVNI</p>}
+            
+            <button className="font-small px-1 py-1 xl:font-medium text-white xl:mt-4 xl:px-4 xl:py-2 bg-red-500 rounded-md shadow-sm transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">Eliminar {props.objectToEliminate}</button>
           </div>
         </div>
       </div>

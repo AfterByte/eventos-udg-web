@@ -155,27 +155,27 @@ export const locations = [
 
 export const campuses = [
   {
-    id:1,
+    id:0,
     name: "Centro Universitario del Sur",
     campus: "Campus Cd. Guzmán",
     image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.cntraveler.com%2Fphotos%2F56953c34e17ca74e420e0a3b%2Fmaster%2Fw_1024%2Cc_limit%2FGettyImages-University-of-Chicago-Matt-Frankel-correced.jpg&f=1&nofb=1"
   },
   {
-    id:2,
+    id:1,
     name: "Centro Universitario de Consti",
     campus: "Campus America",
-    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.cntraveler.com%2Fphotos%2F56953c34e17ca74e420e0a3b%2Fmaster%2Fw_1024%2Cc_limit%2FGettyImages-University-of-Chicago-Matt-Frankel-correced.jpg&f=1&nofb=1"
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.ZIHzdcm03BPIJIHJAujcpgHaED%26pid%3DApi&f=1"
+  },
+  {
+    id:2,
+    name: "Centro Universitario de Piedras negras",
+    campus: "Campus Melaque",
+    image: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fblogs.ubc.ca%2Fallisonlee%2Ffiles%2F2013%2F10%2FTop-10-Universities-in-USA.jpg&f=1&nofb=1"
   },
   {
     id:3,
-    name: "Centro Universitario de Piedras negras",
-    campus: "Campus Melaque",
-    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.cntraveler.com%2Fphotos%2F56953c34e17ca74e420e0a3b%2Fmaster%2Fw_1024%2Cc_limit%2FGettyImages-University-of-Chicago-Matt-Frankel-correced.jpg&f=1&nofb=1"
-  },
-  {
-    id:4,
     name: "Centro Universitario de las Pecas",
     campus: "Campus Puerto Vallarta",
-    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.cntraveler.com%2Fphotos%2F56953c34e17ca74e420e0a3b%2Fmaster%2Fw_1024%2Cc_limit%2FGettyImages-University-of-Chicago-Matt-Frankel-correced.jpg&f=1&nofb=1"
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thoughtco.com%2Fthmb%2FP2VM2iEskutbaPxd7L1Hbk104-0%3D%2F1600x1067%2Ffilters%3Afill(auto%2C1)%2FPatrick-Nouhailler-Introduction-Princeton-56a188903df78cf7726bceef.jpg&f=1&nofb=1"
   }
 ]

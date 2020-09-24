@@ -217,7 +217,7 @@ export default function LocationDetails() {
             </Formik>
 
             {showMessage 
-              ? <DeleteMessage changeDeleteMessage={changeDeleteMessage}/>
+              ? <DeleteMessage changeDeleteMessage={changeDeleteMessage} objectToEliminate={"ubicación"}/>
               : <div className="hidden"></div>}
 
           </div>

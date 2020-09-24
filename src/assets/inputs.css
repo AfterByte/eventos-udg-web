@@ -1,0 +1,9 @@
+/*classes to change the look on Input Files elements in HTML*/
+input[type="file"] {
+  position: absolute;
+  z-index: -1;
+  top: 10px;
+  left: 8px;
+  font-size: 17px;
+  color: #b8b8b8;
+}

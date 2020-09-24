@@ -101,7 +101,7 @@ export default function LocationMenu(props: props) {
               </div>
 
               {showMessage 
-              ? <DeleteMessage changeDeleteMessage={changeDeleteMessage}/>
+              ? <DeleteMessage changeDeleteMessage={changeDeleteMessage} objectToEliminate={"ubicación"}/>
               : <div className="hidden"></div>}
 
             </div>

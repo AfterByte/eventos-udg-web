@@ -65,7 +65,7 @@ const AppNavigator = () => {
         <Route path="/locations"><LocationMenu locations={locations}/></Route>
         <Route exact path="/locationDetails/:id"><LocationDetails/></Route>
         <Route path="/createLocation"><LocationView/></Route>
-        <Route path="/editLocation/:id"><LocationEdit/></Route>
+        <Route exact path="/editLocation/:id"><LocationEdit/></Route>
         <Route path="/campuses"><CampusesMenu campuses={campuses}/></Route>
       </Switch>
     </ResponsiveContext.Provider>
