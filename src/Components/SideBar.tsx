@@ -3,7 +3,6 @@ import logo from "../Images/udgL.png";
 import Menu from "./Menu";
 
 import { AuthContext, AuthProviderPayload } from "./AuthProvider";
-import { ResponsiveContext, RespContextPayload } from "./Routes";
 
 /**SidebarComponent
  * This component only works as a background when the user is logged in a menu is show but if it isn't logged in
@@ -12,7 +11,6 @@ import { ResponsiveContext, RespContextPayload } from "./Routes";
 const SideBar = () => {
   /**Api client is used to manage the states in the sessions */
   const { apiClient } = useContext(AuthContext) as AuthProviderPayload;
-  const { toggleSidebar } = useContext(ResponsiveContext) as RespContextPayload;
   return (
     <div className="w-full h-screen bg-indigo-500">
       {/*When there is no token it means thath the user is no logged in */}

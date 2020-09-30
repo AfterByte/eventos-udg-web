@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-  useHistory,
-  Link,
-} from "react-router-dom";
-/**COMPONENTS */
-import LocationView from "../Views/LocationView";
+import { Link } from "react-router-dom";
 /**ICONS IMPORTS */
 import Event from "../assets/icons/event.svg";
 import myEvents from "../assets/icons/myEvents.svg";

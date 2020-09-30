@@ -1,4 +1,4 @@
-import React, { Component, useContext, Children, useEffect } from "react";
+import React, { useContext } from "react";
 import SideBar from "../Components/SideBar";
 import EventCard, { Event } from "../Components/EventCard";
 import Header from "../Components/Header";

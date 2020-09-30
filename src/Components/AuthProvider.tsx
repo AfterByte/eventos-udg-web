@@ -1,9 +1,8 @@
 import React, { createContext, ReactNode, useReducer, useEffect } from "react";
 // Helper imports
-import EventosudgApiClient, {
-  UserCredentials,
-  ClientResponse,
-} from "../helpers/apiClient";
+import EventosudgApiClient, { ClientResponse } from "../helpers/apiClient";
+// Payload imports
+import { UserCredentials } from "../helpers/payloads";
 
 export const AuthContext = createContext({});
 const apiClient = new EventosudgApiClient("http://afterbyte.wtf:3000/");

@@ -1,4 +1,3 @@
-import { type } from "os";
 import React from "react";
 import { IMarker } from "../Components/Maps";
 import PlacesAutocomplete, {
@@ -31,7 +30,7 @@ export default function Search({
   };
 
   return (
-    <div>
+    <div className="p-4">
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
@@ -54,10 +53,6 @@ export default function Search({
               name=""
               id=""
             />
-            <p className="text-sm mt-4 font-thin">
-              Nota: Puedes colocar tu marcador en la ubicación exacta, y ajustar
-              el domicilio en el formulario.
-            </p>
 
             <div>
               {loading ? <div>...loading</div> : null}
@@ -74,6 +69,10 @@ export default function Search({
                 );
               })}
             </div>
+            <p className="text-sm mt-4 font-thin">
+              Nota: Puedes colocar tu marcador en la ubicación exacta, y ajustar
+              el domicilio en el formulario.
+            </p>
           </div>
         )}
       </PlacesAutocomplete>

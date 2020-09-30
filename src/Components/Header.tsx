@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { useContext } from "react";
 import NotificationIcon from "../assets/icons/notifications.svg";
 import Perfil from "../Components/Perfil";
 import Menu from "../assets/icons/menu.svg";

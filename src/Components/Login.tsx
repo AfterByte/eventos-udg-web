@@ -3,13 +3,11 @@ import React, { useState, useContext } from "react";
 import { AuthContext, AuthProviderPayload } from "./AuthProvider";
 // Resources imports
 import Fondo from "../Images/fondo.jpg";
-import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const { signin } = useContext(AuthContext) as AuthProviderPayload;
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();

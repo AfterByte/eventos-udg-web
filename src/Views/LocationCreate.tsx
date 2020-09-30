@@ -1,14 +1,23 @@
-import React, { Component, useState, useContext } from "react";
-import MapComponent from "../Components/MapComponent";
+import React, { useContext } from "react";
+// Payloads imports
+import { Payload, Location } from "../helpers/payloads";
+// Custom components imports
+import LocationForm from "../Components/LocationForm";
 import Header from "../Components/Header";
 import Taskbar from "../Components/TaskBar";
 import SideBar from "../Components/SideBar";
+// Provider imports
 import { ResponsiveContext, RespContextPayload } from "../Components/Routes";
-import CreateLocation from "../Components/CreateLocation";
-import Maps from "../Components/Maps";
+import { AuthContext, AuthProviderPayload } from "../Components/AuthProvider";
 
-const LocationView = (props: any) => {
+const LocationView = () => {
   const { sidebarHidden } = useContext(ResponsiveContext) as RespContextPayload;
+  const { apiClient } = useContext(AuthContext) as AuthProviderPayload;
+
+  const create = (location: Payload<Location>) => {
+    return apiClient.createLocation(location);
+  };
+
   return (
     <div className="h-full">
       <div className="grid grid-cols-6 h-screen">
@@ -36,7 +45,7 @@ const LocationView = (props: any) => {
 
         {!sidebarHidden ? (
           <div className="col-span-4 sm:col-start-2 sm:col-end-7 w-full h-full pt-24 sm:pt-24 z-0 pb-24 sm:pb-12 bg-indigo-500 bg-opacity-50">
-            <MapComponent isCreate={true}/>
+            <LocationForm writeAction={create} />
           </div>
         ) : (
           <div className="hidden"></div>

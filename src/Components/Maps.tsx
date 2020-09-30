@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import "@reach/combobox/styles.css";
 import Marker from "../Components/Marker";
-import Search from "../Components/Search";
-import { type } from "os";
 
 export type IMarker = {
   lat: number;
