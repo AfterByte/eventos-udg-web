@@ -75,14 +75,16 @@ const LocationForm = ({ location, writeAction }: LocationFromProps) => {
         {({ setFieldValue }) => {
           return (
             <div className="flex">
-              <div className="bg-white w-11/12 rounded">
+              <div className="p-4 bg-white w-11/12 rounded">
                 <Search
                   setMarker={setMarker}
                   setAddress={setAddress}
                   marker={marker}
                   address={address}
                 />
-                <Maps marker={marker} />
+                <div style={{ height: "62vh", width: "100%" }}>
+                  <Maps marker={marker} />
+                </div>
               </div>
               <div className="ml-4 bg-white w-full rounded">
                 <LocationFields

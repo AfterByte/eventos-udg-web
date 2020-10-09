@@ -50,25 +50,23 @@ const Maps = ({ marker }: MapsProps) => {
 
   return (
     // Important! Always set the container height explicitly
-    <div className="ml-4 mr-4 ">
-      <div className=" mb-6" style={{ height: "62vh", width: "100%" }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{
-            key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string | "",
-          }}
-          center={mapConfig.center}
-          zoom={mapConfig.zoom}
-        >
-          {marker ? (
-            <Marker
-              lat={marker.lat}
-              lng={marker.lng}
-              name={marker.name}
-              color={color}
-            />
-          ) : null}
-        </GoogleMapReact>
-      </div>
+    <div className="h-full w-full">
+      <GoogleMapReact
+        bootstrapURLKeys={{
+          key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string | "",
+        }}
+        center={mapConfig.center}
+        zoom={mapConfig.zoom}
+      >
+        {marker ? (
+          <Marker
+            lat={marker.lat}
+            lng={marker.lng}
+            name={marker.name}
+            color={color}
+          />
+        ) : null}
+      </GoogleMapReact>
     </div>
   );
 };
