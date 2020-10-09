@@ -30,7 +30,7 @@ export default function Search({
   };
 
   return (
-    <div className="p-4">
+    <div>
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
