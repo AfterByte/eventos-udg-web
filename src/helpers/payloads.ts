@@ -31,11 +31,17 @@ export type Event = {
   id: string;
   name: string;
   capacity: number;
+  enrolled: number;
   description: string;
-  organizer: string;
-  status: string;
-  date: string;
-  maxCapacity: number;
+  organizer: Person;
+  guests: Person[];
+  tags: Tag[];
+  status: Status;
+  reservation: {
+    location: Location;
+    start: Date;
+    end: Date;
+  };
   image?: Attachment;
 };
 
@@ -57,4 +63,22 @@ export type Location = {
   third_party: boolean;
   disabled: boolean;
   campuses?: Campus[];
+};
+
+export type Person = {
+  id: string;
+  name: string;
+  lastname: string;
+  second_lastname: string;
+  image?: Attachment;
+};
+
+export type Tag = {
+  id: string;
+  name: string;
+};
+
+export type Status = {
+  id: string;
+  name: string;
 };
