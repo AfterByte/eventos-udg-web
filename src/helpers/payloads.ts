@@ -29,9 +29,9 @@ export type User = {
 
 export type Event = {
   id: string;
-  name: string;
+  name: string; 
   capacity: number;
-  enrolled: number;
+  enrolled: boolean;
   description: string;
   organizer: Person;
   guests: Person[];

@@ -12,11 +12,13 @@ import { AuthContext, AuthProviderPayload } from "./AuthProvider";
 import LoginView from "../Views/LoginView";
 import UpcomingEvents from "../Views/UpcomingEvents";
 import SampleView from "../Views/SampleView";
+import ViewTickets from "../Views/ViewTickets";
 import LocationMenu from "../Views/LocationMenu";
 import LocationDetails from "../Views/LocationDetails";
 import LocationCreate from "../Views/LocationCreate";
 import LocationEdit from "../Views/LocationEdit";
 import CampusesMenu from "../Views/CampusesMenu";
+import CreateEventView from "../Views/CreateEventView";
 // Mock data
 import { Event } from "./EventCard";
 import { events, campuses } from "../helpers/mockData";
@@ -59,6 +61,8 @@ const AppNavigator = () => {
         <Route exact path="/locations/new" component={LocationCreate} />
         <Route exact path="/locations/:id" component={LocationDetails} />
         <Route exact path="/locations/:id/edit" component={LocationEdit} />
+        <Route path="/myTickets" component={ViewTickets} />
+        <Route path="/createEvent" component={CreateEventView} />
         <Route path="/campuses">
           <CampusesMenu campuses={campuses} />
         </Route>

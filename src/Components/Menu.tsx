@@ -50,7 +50,7 @@ const Menu = () => {
             style={{ filter: "invert(100%)" }}
           />
           <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0 ml-6">
-            Crear eventos
+            <Link to="/createEvent">Crear eventos</Link>
           </button>
         </li>
 
@@ -78,7 +78,7 @@ const Menu = () => {
             style={{ filter: "invert(100%)" }}
           />
           <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0 ml-6">
-            Entradas
+            <Link to="/myTickets"> Entradas </Link>
           </button>
         </li>
 

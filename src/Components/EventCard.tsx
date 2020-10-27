@@ -18,9 +18,10 @@ interface EventeCardProps {
 export default class EventCard extends Component<EventeCardProps> {
   render() {
     return (
-      <div className="col-span-1 sm:col-span-4 bg-white max-h-full w-full rounded overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">
+      <div className="cardSpam col-span-1 sm:col-span-4 bg-white max-h-full w-full rounded overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">
         <img
           className="w-full h-20 hidden sm:flex sm:h-48"
+          id="img"
           src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FKkh5gmmcxH4%2Fhqdefault.jpg&f=1&nofb=1"
           alt="Sunset in the mountains"
         ></img>

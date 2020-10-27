@@ -1,3 +1,5 @@
+import { Event, Location } from "./payloads";
+
 export const events = [
   {
     id: 0,
@@ -177,5 +179,32 @@ export const campuses = [
     name: "Centro Universitario de las Pecas",
     campus: "Campus Puerto Vallarta",
     image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thoughtco.com%2Fthmb%2FP2VM2iEskutbaPxd7L1Hbk104-0%3D%2F1600x1067%2Ffilters%3Afill(auto%2C1)%2FPatrick-Nouhailler-Introduction-Princeton-56a188903df78cf7726bceef.jpg&f=1&nofb=1"
+  }
+]
+
+const location:Location={
+  city:"lomasturbas",
+  address:"colonia consti",
+  id:"20",
+  disabled:false,
+  latitude: 19.725539,
+  longitude: -103.461508,
+  max_capacity:300,
+  name:"Casa del arte",
+  third_party: true
+  
+}
+export const eventsTickets:Event[]=[
+  {
+    id: "1",
+    name: "Marcha en contra del acoso",
+    capacity: 20,
+    enrolled: true,
+    description: "an Empty event",
+    organizer: {id:"12",second_lastname:"del rio",lastname:"santana",name:"arturo"},
+    status: {id:"15",name:"activo"},
+    guests:[],
+    tags:[],
+    reservation:{location,end:new Date(),start:new Date()},
   }
 ]

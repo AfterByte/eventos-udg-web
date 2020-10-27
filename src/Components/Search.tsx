@@ -50,8 +50,8 @@ export default function Search({
               })}
               className="appearance-none w-full mt-4 h-8 bg-white border border-black hover:border-grey rounded shadow "
               type="text"
-              name=""
-              id=""
+              name="serchBar"
+              id="serchBar"
             />
 
             <div>

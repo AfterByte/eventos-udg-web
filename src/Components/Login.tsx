@@ -49,7 +49,7 @@ const Login = () => {
                 value={code}
                 id="matricula"
                 placeholder="INGRESA TU CODIGO"
-                className="appearance-none w-1/2 bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
+                className="inputCode appearance-none w-1/2 bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
               />
             </div>
             <div className="mb-4 text-center">
@@ -66,7 +66,7 @@ const Login = () => {
                 name="Nip"
                 id="nip"
                 placeholder="INGRESA TU NIP"
-                className="appearance-none w-1/2 bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
+                className="inputNip appearance-none w-1/2 bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
               />
             </div>
             <div className="text-center">
