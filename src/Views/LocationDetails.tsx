@@ -26,6 +26,7 @@ export default function LocationDetails() {
   const [location, setLocation] = useState<Location>();
   const [marker, setMarker] = useState<IMarker>();
   const [showMessage, setShowMessage] = useState(false);
+  const [enablePermitedLocations, setEnablePermitedLocations] = useState(false);
   // Effect
   useEffect(() => {
     const findLocation = async () => {
@@ -78,9 +79,11 @@ export default function LocationDetails() {
         {!sidebarHidden ? (
           <div className="col-span-6 sm:col-start-2 sm:col-end-7 w-full h-full pt-24 sm:pt-24 z-0 pb-24 sm:pb-0 bg-indigo-500 bg-opacity-50">
             <div className="grid grid-cols-6 mt-4 xl:mt-4 sm:mt-6 mb-4 sm:mb-8 h-auto">
-              {/* Firts section */}
-              <div className="col-span-6 xl:col-span-4 grid grid-cols-6 gap-4 bg-white ml-2 xl:ml-4 mr-2 rounded-md shadow-sm">
-                <div className="col-span-4 mt-2 ml-2">
+              {/* Firts section - LOCATION DETAILS */}
+              <div className={enablePermitedLocations
+                              ? "col-span-6 xl:col-span-4 grid grid-cols-6 gap-4 bg-white ml-2 xl:ml-4 mr-2 rounded-md shadow-sm"
+                              : "col-span-6 xl:col-span-6 grid grid-cols-6 gap-4 bg-white ml-2 xl:ml-4 mr-4 rounded-md shadow-sm"}>
+                <div className="col-span-5 mt-2 ml-2">
                   <div className="grid grid-cols-1">
                     <label htmlFor="name" className="pb-2">
                       Nombre
@@ -90,7 +93,7 @@ export default function LocationDetails() {
                     </div>
                   </div>
                 </div>
-                <div className="col-span-2 mt-2">
+                <div className="col-span-1 mt-2">
                   <div className="grid grid-cols-1">
                     <label
                       htmlFor="capacity"
@@ -188,64 +191,68 @@ export default function LocationDetails() {
                 </div>
               </div>
 
-              {/* Second section */}
-              <div className="col-span-6 xl:col-span-2 bg-white ml-2 mr-2 xl:mr-4 rounded-md shadow-sm mt-4 xl:mt-0 pb-4 xl:pb-0">
-                <div className="col-span-2 grid grid-cols-6 mt-4 ml-2 mr-2">
-                  <div className="col-span-6 border-b-4">
-                    <p className="text-lg">
-                      Organizadores que pueden hacer uso de esta ubicación
-                    </p>
-                    <div className="grid grid-cols-12 my-4">
-                      <div className="col-span-1 flex justify-center pt-2">
-                        <img className="h-5" src={Help} alt="help-icon" />
-                      </div>
-                      <p className="col-span-10 text-sm">
-                        Solo los organizadores de las universidades aquí
-                        indicadas podrán hacer uso de esta ubicación al crear un
-                        evento.
+              {/* Second section - CAMPUS PERMITED LOCATIONS */}
+              {enablePermitedLocations ?
+                <div className="col-span-6 xl:col-span-2 bg-white ml-2 mr-2 xl:mr-4 rounded-md shadow-sm mt-4 xl:mt-0 pb-4 xl:pb-0">
+                  <div className="col-span-2 grid grid-cols-6 mt-4 ml-2 mr-2">
+                    <div className="col-span-6 border-b-4">
+                      <p className="text-lg">
+                        Organizadores que pueden hacer uso de esta ubicación
                       </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-span-2 grid grid-cols-6 mt-4 ml-2 mr-2">
-                  <div className="col-start-3 col-end-7 flex ml-2 sm:ml-0 justify-center sm:justify-end">
-                    <form
-                      className="flex w-full"
-                      onSubmit={(e) => e.preventDefault()}
-                    >
-                      <label className="flex w-full h-full mr-2 sm:mr-0 border border-gray-500 border-opacity-50">
-                        <img
-                          className="h-full sm:py-0 py-1 px-1 bg-gray-500 bg-opacity-50"
-                          style={{ opacity: "0.5" }}
-                          src={Search}
-                          alt={"SearchIcon"}
-                        />
-                        <input
-                          className="sm:mr-0 px-1 bg-gray-500 bg-opacity-25 w-full"
-                          type="text"
-                          name="buscar"
-                        />
-                      </label>
-                      <div className="hidden sm:grid mr-2 px-2 py-2 text-md font-normal text-white bg-blue-500 items-center">
-                        Buscar
+                      <div className="grid grid-cols-12 my-4">
+                        <div className="col-span-1 flex justify-center pt-2">
+                          <img className="h-5" src={Help} alt="help-icon" />
+                        </div>
+                        <p className="col-span-10 text-sm">
+                          Solo los organizadores de las universidades aquí
+                          indicadas podrán hacer uso de esta ubicación al crear un
+                          evento.
+                        </p>
                       </div>
-                    </form>
+                    </div>
+                  </div>
+
+                  <div className="col-span-2 grid grid-cols-6 mt-4 ml-2 mr-2">
+                    <div className="col-start-3 col-end-7 flex ml-2 sm:ml-0 justify-center sm:justify-end">
+                      <form
+                        className="flex w-full"
+                        onSubmit={(e) => e.preventDefault()}
+                      >
+                        <label className="flex w-full h-full mr-2 sm:mr-0 border border-gray-500 border-opacity-50">
+                          <img
+                            className="h-full sm:py-0 py-1 px-1 bg-gray-500 bg-opacity-50"
+                            style={{ opacity: "0.5" }}
+                            src={Search}
+                            alt={"SearchIcon"}
+                          />
+                          <input
+                            className="sm:mr-0 px-1 bg-gray-500 bg-opacity-25 w-full"
+                            type="text"
+                            name="buscar"
+                          />
+                        </label>
+                        <div className="hidden sm:grid mr-2 px-2 py-2 text-md font-normal text-white bg-blue-500 items-center">
+                          Buscar
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
+                  {/* organizers list */}
+                  <div className="col-span-2 grid grid-cols-6 gap-4 mt-6 ml-2 mr-2">
+                    {location?.campuses?.map((campus) => (
+                      <div className="col-span-3 py-2 flex justify-between items-center border border-gray-500">
+                        <p className="text-center pl-2">{campus.name}</p>
+                        <button>
+                          <img className="h-6" src={Clear} alt={"ClearTagIcon"} />
+                        </button>
+                      </div>
+                    ))}
                   </div>
                 </div>
-
-                {/* organizers list */}
-                <div className="col-span-2 grid grid-cols-6 gap-4 mt-6 ml-2 mr-2">
-                  {location?.campuses?.map((campus) => (
-                    <div className="col-span-3 py-2 flex justify-between items-center border border-gray-500">
-                      <p className="text-center pl-2">{campus.name}</p>
-                      <button>
-                        <img className="h-6" src={Clear} alt={"ClearTagIcon"} />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
+                : <div className="hidden"></div>
+              }
+              
             </div>
 
             {showMessage ? (

@@ -18,7 +18,8 @@ import LocationDetails from "../Views/LocationDetails";
 import LocationCreate from "../Views/LocationCreate";
 import LocationEdit from "../Views/LocationEdit";
 import CampusesMenu from "../Views/CampusesMenu";
-import CreateEventView from "../Views/CreateEventView";
+import CreateEventForm from "../Views/CreateEvent";
+import CreateEventLocation from "../Views/CreateEventView";
 // Mock data
 import { Event } from "./EventCard";
 import { events, campuses } from "../helpers/mockData";
@@ -62,10 +63,11 @@ const AppNavigator = () => {
         <Route exact path="/locations/:id" component={LocationDetails} />
         <Route exact path="/locations/:id/edit" component={LocationEdit} />
         <Route path="/myTickets" component={ViewTickets} />
-        <Route path="/createEvent" component={CreateEventView} />
+        <Route path="/createEvent" component={CreateEventLocation} />
         <Route path="/campuses">
           <CampusesMenu campuses={campuses} />
         </Route>
+        <Route path="/createEventForm" component={CreateEventForm}></Route>
       </Switch>
     </ResponsiveContext.Provider>
   );
