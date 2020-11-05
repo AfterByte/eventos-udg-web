@@ -3,21 +3,38 @@ import React, { useState, useContext } from "react";
 import { AuthContext, AuthProviderPayload } from "./AuthProvider";
 // Resources imports
 import Fondo from "../Images/fondo.jpg";
+//ALERTS
+/* import alertify from "alertifyjs"; */
+
+/**ALERTS WITH SWEETALERT */
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Login = () => {
   const { signin } = useContext(AuthContext) as AuthProviderPayload;
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
+  const MySwal = withReactContent(Swal);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
       const response = await signin({ code: +code, password: password });
-      if (response.status >= 500)
+      if (response.status >= 500) {
         // TODO: Notify user there was a server error
+        MySwal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Error en el servidor ",
+          //TODO: REDIRECT TO PAGE 500
+        });
         console.warn("A server error has occurred!");
-      else if (response.status === 401)
-        console.warn("Code and/or password are incorrect!");
+      } else if (response.status === 401)
+        MySwal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "El codigo o la contraseña son incorrectos!",
+        });
     } catch (error) {
       console.log(error);
     }

@@ -1,38 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Event } from "../helpers/payloads";
 import { events } from "../helpers/mockData";
 import ticketGirl from "../Images/ticketGirl.jpeg";
-
-
-/**IMPORT QR CODE GENERATE */
-import QRCode from 'qrcode';
-
-interface TicketProps {
+import qr from "../Images/qr.svg";
+interface ItemProps {
   ticket: Event;
-  setShownTicket(ticket: Event): void;
+  setShownItem(ticket: Event): void;
 }
 
-const TicketCard = ({ ticket, setShownTicket }: TicketProps) => {
-
-
- 
-/**QR GENERATE CODE */
-const[url,setUrl]=useState(""); 
-async function generateQR(){
- const url = await QRCode.toDataURL(ticket.id);
- setUrl(url)
-}
-
-useEffect(()=>{
-  if (!url)  
-    generateQR();
-})
-
-
-
+const ItemCard = ({ ticket, setShownItem }: ItemProps) => {
   return (
     <button
-      onClick={() => setShownTicket(ticket)}
+      onClick={() => setShownItem(ticket)}
       className="col-span-1 mr-4 h-32 bg-white ml-4 shadow-md text-left hover:bg-indigo-500 hover:bg-opacity-50 hover:text-white transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100"
     >
       <div className="pl-4 flex">
@@ -59,11 +38,11 @@ useEffect(()=>{
         </div>
         <div>
           <p>
-            <img src={url} alt="" className="w-32 ml-20" />
+            <img src={qr} alt="" className="w-32 ml-20" />
           </p>
         </div>
       </div>
     </button>
   );
 };
-export default TicketCard;
+export default ItemCard;

@@ -105,6 +105,13 @@ const Menu = () => {
             <Link to="/locations">Ubicaciones</Link>
           </button>
         </li>
+        <li className="flex text-white font-sans text-center m-8 mt-4 pl-12">
+          <img src={location} alt={"SortIcon"} />
+
+          <button className="border border-transparent rounded hover:bg-blue-500 bg-opacity-0">
+            <Link to="/campuses">Administrativo</Link>
+          </button>
+        </li>
       </ul>
     </div>
   );

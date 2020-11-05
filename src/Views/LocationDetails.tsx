@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import SideBar from "../Components/SideBar";
 import Header from "../Components/Header";
 import DeleteMessage from "../Components/DeleteMessage";
+
 //google maps
 import Maps, { IMarker } from "../Components/Maps";
 //icons
@@ -13,7 +14,7 @@ import Clear from "../assets/icons/clear-black.svg";
 import { ResponsiveContext, RespContextPayload } from "../Components/Routes";
 import { AuthContext, AuthProviderPayload } from "../Components/AuthProvider";
 // Payloads impors
-import { Location } from "../helpers/payloads";
+import { Location, Without } from "../helpers/payloads";
 import { typeOf } from "../helpers/validationFunctions";
 
 export default function LocationDetails() {
@@ -26,6 +27,12 @@ export default function LocationDetails() {
   const [location, setLocation] = useState<Location>();
   const [marker, setMarker] = useState<IMarker>();
   const [showMessage, setShowMessage] = useState(false);
+  const [shownLocation, setShownLocation] = useState<
+    Without<Location, "campuses">
+  >();
+  const [locations, setLocations] = useState<Without<Location, "campuses">[]>(
+    []
+  );
   const [enablePermitedLocations, setEnablePermitedLocations] = useState(false);
   // Effect
   useEffect(() => {
@@ -42,6 +49,28 @@ export default function LocationDetails() {
         name: "marker",
       });
   });
+
+  /**TEST: CHECK IF THIS WORKS */
+  const deleteLocation = async () => {
+    if (shownLocation) {
+      const response = await apiClient.deleteLocation(shownLocation.id);
+      if (response.status === 204) {
+        setShownLocation(undefined);
+        getLocations();
+      } else console.log(response);
+    }
+  };
+  const getLocations = async () => {
+    const response = await apiClient.indexLocations();
+    if (
+      response.body &&
+      typeOf<{ locations: Without<Location, "campuses">[] }>(
+        "locations",
+        response.body
+      )
+    )
+      setLocations(response.body.locations);
+  };
 
   //for google map
   const mapConfig = {
@@ -258,7 +287,7 @@ export default function LocationDetails() {
             {showMessage ? (
               <DeleteMessage
                 thing="Ubicación"
-                deleteAction={() => {}}
+                deleteAction={deleteLocation}
                 hide={() => setShowMessage(false)}
               />
             ) : (

@@ -18,6 +18,8 @@ import LocationDetails from "../Views/LocationDetails";
 import LocationCreate from "../Views/LocationCreate";
 import LocationEdit from "../Views/LocationEdit";
 import CampusesMenu from "../Views/CampusesMenu";
+import CreateEventView from "../Views/CreateEventView";
+import ViewItems from '../Views/ViewItems';
 import CreateEventForm from "../Views/CreateEvent";
 import CreateEventLocation from "../Views/CreateEventView";
 // Mock data
@@ -68,6 +70,7 @@ const AppNavigator = () => {
           <CampusesMenu campuses={campuses} />
         </Route>
         <Route path="/createEventForm" component={CreateEventForm}></Route>
+        <Route path="/items" component={ViewItems}/>
       </Switch>
     </ResponsiveContext.Provider>
   );

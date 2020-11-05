@@ -18,6 +18,7 @@ const LocationFields = ({
   useMemo(() => {
     setFieldValue("address", address);
   }, [setFieldValue, address]);
+
   return (
     <div className="mt-8">
       <Form>
@@ -33,6 +34,7 @@ const LocationFields = ({
             type="text"
             name="name"
             id="name"
+            required
           />
           <label
             htmlFor="city"
@@ -45,6 +47,7 @@ const LocationFields = ({
             type="text"
             name="city"
             id="city"
+            required
           />
           <label
             htmlFor="address"
@@ -57,6 +60,7 @@ const LocationFields = ({
             type="text"
             name="address"
             id="address"
+            required
           />
           <label
             htmlFor="max_capacity"
@@ -69,6 +73,7 @@ const LocationFields = ({
             type="text"
             name="max_capacity"
             id="max_capacity"
+            required
           />
           <Field
             className="mt-4"

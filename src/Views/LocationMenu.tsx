@@ -11,6 +11,9 @@ import Header from "../Components/Header";
 import Taskbar from "../Components/TaskBar";
 import LocationCard from "../Components/LocationCard";
 import DeleteMessage from "../Components/DeleteMessage";
+/**ALERTS WITH SWEETALERT */
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 //import imgs/svgs
 import addIcon from "../assets/icons/add.svg";
 import { typeOf } from "../helpers/validationFunctions";
@@ -29,6 +32,20 @@ export default function LocationMenu() {
 
   const firstUpdate = useRef(true);
 
+  /**CONST FOR USE SWEETALERT */
+  const MySwal = withReactContent(Swal);
+  const Toast = MySwal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", MySwal.stopTimer);
+      toast.addEventListener("mouseleave", MySwal.resumeTimer);
+    },
+  });
+
   const getLocations = async () => {
     const response = await apiClient.indexLocations();
     if (
@@ -45,6 +62,19 @@ export default function LocationMenu() {
     if (shownLocation) {
       const response = await apiClient.deleteLocation(shownLocation.id);
       if (response.status === 204) {
+        /*  MySwal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Se ha eliminado la ubicación",
+          showConfirmButton: false,
+          timer: 1500,
+        }); */
+
+        Toast.fire({
+          icon: "success",
+          title: "Ubicacion eliminada con exito",
+        });
+
         setShownLocation(undefined);
         getLocations();
       } else console.log(response);

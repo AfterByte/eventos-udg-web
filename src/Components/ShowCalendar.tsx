@@ -59,7 +59,7 @@ export default function ShowCalendar({
               {`${thing} las fechas de tu evento`}
             </p>
             <button
-              onClick={onConfirm}
+              /*  onClick={onConfirm} */
               className="font-small px-1 py-1 xl:font-medium text-white xl:mt-4 xl:px-4 xl:py-2 bg-blue-500 rounded-md shadow-sm transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100"
             >
               {`Apartar ubicacion`}

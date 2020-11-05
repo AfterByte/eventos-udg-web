@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import UserIcon from "../assets/icons/user-solid-circle.svg";
 import { AuthContext, AuthProviderPayload } from "./AuthProvider";
+import { Link, useHistory } from "react-router-dom";
 
 interface PerfilProps {
   userName: string;
@@ -14,6 +15,13 @@ const Perfil = ({ userName }: PerfilProps) => {
   };
 
   const { signout } = useContext(AuthContext) as AuthProviderPayload;
+
+  const history = useHistory();
+
+  async function closeSesion() {
+    await signout();
+    history.push("/");
+  }
 
   return (
     <div className="relative w-full">
@@ -37,11 +45,12 @@ const Perfil = ({ userName }: PerfilProps) => {
           >
             Editar perfil
           </a>
+
           <button
-            onClick={signout}
+            onClick={closeSesion}
             className="border block px-2 py-2 hover:bg-red-500 hover:text-white text-red-500 font-medium"
           >
-            Cerrar sesion
+            Cerrar Sesión
           </button>
         </div>
       ) : (

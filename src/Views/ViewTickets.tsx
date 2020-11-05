@@ -5,6 +5,7 @@ import { ResponsiveContext, RespContextPayload } from "../Components/Routes";
 import { AuthContext, AuthProviderPayload } from "../Components/AuthProvider";
 // Payload import
 import { Location, Without, Event } from "../helpers/payloads";
+import { eventsTickets } from "../helpers/mockData";
 
 //import external components
 import SideBar from "../Components/SideBar";
@@ -16,8 +17,9 @@ import DeleteMessage from "../Components/DeleteMessage";
 //import imgs/svgs
 import addIcon from "../assets/icons/add.svg";
 import { typeOf } from "../helpers/validationFunctions";
-import { eventsTickets } from "../helpers/mockData";
 import ticketGirl from "../Images/ticketGirl.jpeg";
+/**IMPORT QR CODE GENERATE */
+import QRCode from "qrcode";
 
 const ViewTickets = () => {
   const { sidebarHidden } = useContext(ResponsiveContext) as RespContextPayload;
@@ -67,6 +69,17 @@ const ViewTickets = () => {
   }
   /**TODO: CHANGE  */
   /** */
+
+  /**QR GENERATE CODE */
+  const [url, setUrl] = useState("");
+  async function generateQR() {
+    const url = await QRCode.toDataURL(shownTicket?.id || "");
+    setUrl(url);
+  }
+
+  useEffect(() => {
+    if (!url) generateQR();
+  });
   return (
     <div className="h-full">
       <div className="grid grid-cols-6 h-screen">
@@ -103,36 +116,45 @@ const ViewTickets = () => {
                 {/*div for the separator line*/}
                 <div className="hidden ml-8 border-r border-white xl:grid fixed h-full overflow-hidden"></div>
                 {/* location description card */}
-                <div className="col-span-12 xl:col-start-2 xl:col-end-13">
-                  <div className="xl:mt-10 px-6 xl:px-12 xl:mx-12 xl:w-1/4 overflow-hidden bg-white shadow-xl xl:shadow-md xl:fixed">
+                <div className="col-span-12 xl:col-start-2 xl:col-end-13 xl:pt-8">
+                  <div className="xl:mt-10 px-6 xl:px-12 xl:mx-12 xl:w-1/4 bg-white shadow-xl xl:shadow-md xl:fixed">
                     {shownTicket && (
-                      <div className="text-center pt-1 pb-1 xl:pt-16 xl:pb-12">
-                        <div className="col-span-1 px-5">
-                          <img
-                            className="w-full h-56 -mt-16 shadow-md"
-                            src={ticketGirl}
-                            alt="campus image"
-                          />
-                        </div>
-                        <p className="text-sm xl:text-xl font-bold">
-                          {shownTicket.name}
-                        </p>
-                        <p className="text-sm xl:text-base font-bold text-red-500 pt-2">
-                          {shownTicket.reservation.start.toDateString}
-                        </p>
-                        <p className="text-sm xl:text-base text-red-500 pt-2">
-                          {shownTicket.reservation.location.name}
-                        </p>
-                        <p className="text-sm xl:text-base pt-2">
-                          {/*  AQUI VA EL QR*/}
-                        </p>
-                        <div className="flex justify-between pt-2 xl:pt-0 xl:grid xl:justify-center">
-                          <div>
-                            <button className="font-small px-1 py-1 xl:font-medium text-white xl:mt-12 xl:px-8 xl:py-2 bg-blue-500 rounded-md shadow-sm transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">
-                              Descargar entrada
-                            </button>
+                      <div className="xl:mt-8">
+                        <div className="hidden xl:grid grid-cols-1">
+                          <div className="col-span-1 px-5">
+                            <img
+                              className="w-full h-56 -mt-16 shadow-md"
+                              src={ticketGirl}
+                              alt="campus image"
+                            />
                           </div>
-                          <div></div>
+                        </div>
+
+                        <div className="text-center pt-1 pb-1 xl:pt-8 xl:pb-12">
+                          <p className="text-sm xl:text-xl font-bold">
+                            {shownTicket.name}
+                          </p>
+                          <p className="text-sm xl:text-base font-bold text-red-500 pt-2">
+                            {/*  {shownTicket.reservation.start.toDateString} */}
+                            18/Julio/2020 07:35 pm
+                          </p>
+                          <p className="text-sm xl:text-base text-red-500 pt-2">
+                            {shownTicket.reservation.location.name}
+                          </p>
+                          <p className="text-sm xl:text-base pt-2">
+                            <img
+                              className="w-2/6 ml-32 shadow-md"
+                              src={url}
+                              alt=""
+                            />
+                          </p>
+                          <div className="flex justify-between pt-2 xl:pt-0 xl:grid xl:justify-center">
+                            <div className="ml-2">
+                              <button className="font-small px-1 py-1 xl:font-medium text-white xl:mt-4 xl:px-8 xl:py-2 bg-blue-500 rounded-md shadow-sm transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">
+                                Descargar QR
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     )}

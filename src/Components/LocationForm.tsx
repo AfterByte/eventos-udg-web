@@ -10,6 +10,9 @@ import Maps, { IMarker } from "./Maps";
 import Search from "./Search";
 import LocationFields from "./LocationFields";
 import { Formik, FormikHelpers } from "formik";
+/**ALERTS WITH SWEETALERT */
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 type LocationPayload = {} & Payload<Location>;
 type FormFields = {} & Without<
@@ -26,7 +29,22 @@ const LocationForm = ({ location, writeAction }: LocationFromProps) => {
   const [address, setAddress] = useState("");
   const [marker, setMarker] = useState<IMarker>();
 
+  /**CONST FOR USE SWEETALERT */
+  const MySwal = withReactContent(Swal);
+  const Toast = MySwal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", MySwal.stopTimer);
+      toast.addEventListener("mouseleave", MySwal.resumeTimer);
+    },
+  });
+
   const history = useHistory();
+  const allClean = 0;
 
   useEffect(() => {
     if (!marker && location)
@@ -41,22 +59,58 @@ const LocationForm = ({ location, writeAction }: LocationFromProps) => {
     values: FormFields,
     { setSubmitting }: FormikHelpers<FormFields>
   ) => {
-    setSubmitting(false);
-    if (marker) {
-      console.log(values);
-      const newLocation: LocationPayload = {
-        ...values,
-        max_capacity: +values.max_capacity,
-        latitude: marker.lat,
-        longitude: marker.lng,
-      };
-      const response = await writeAction(newLocation);
-      if (response.body && typeOf<Location>("id", response.body))
-        history.push(`/locations/${response.body.id}`);
-      else console.log(response);
-    } else console.log("Missing marker!");
-    setSubmitting(true);
+    /**VALIDATIONS */
+
+    if (values.name == "") {
+      Toast.fire({
+        icon: "error",
+        title: "El campo nombre esta vacio",
+      });
+    } else if (values.city == "") {
+      Toast.fire({
+        icon: "error",
+        title: "El campo localidad esta vacio",
+      });
+    } else if (values.address == "") {
+      /*  MySwal.fire(
+        "El campo domicilio esta vacio",
+        "Escriba su domicilio en la barra de busqueda",
+        "info"
+      ); */
+      Toast.fire({
+        icon: "error",
+        title: "El campo domicilio esta vacio",
+        footer: "Busque la dirreccion en la barra",
+      });
+    } else if (values.max_capacity == 0) {
+      Toast.fire({
+        icon: "warning",
+        title: "La capacidad debe ser mayor a 0",
+      });
+    } else {
+      setSubmitting(false);
+      if (marker) {
+        console.log(values);
+        const newLocation: LocationPayload = {
+          ...values,
+          max_capacity: +values.max_capacity,
+          latitude: marker.lat,
+          longitude: marker.lng,
+        };
+        const response = await writeAction(newLocation);
+        Toast.fire({
+          icon: "success",
+          title: "Localidad creada/modificada con exito",
+        });
+        if (response.body && typeOf<Location>("id", response.body))
+          history.push(`/locations/${response.body.id}`);
+        else console.log(response);
+      } else console.log("Missing marker!");
+      setSubmitting(true);
+    }
   };
+
+  /**END VALIDATIONS */
 
   return (
     <div className="grid mt-24 ml-4">
@@ -90,6 +144,7 @@ const LocationForm = ({ location, writeAction }: LocationFromProps) => {
                 <LocationFields
                   address={address}
                   setFieldValue={setFieldValue}
+                  
                 />
               </div>
             </div>
