@@ -17,6 +17,8 @@ import withReactContent from "sweetalert2-react-content";
 //import imgs/svgs
 import addIcon from "../assets/icons/add.svg";
 import { typeOf } from "../helpers/validationFunctions";
+// API Client
+import { deleteLocation, indexLocations } from "../helpers/apiClient";
 
 export default function LocationMenu() {
   const { sidebarHidden } = useContext(ResponsiveContext) as RespContextPayload;
@@ -47,8 +49,9 @@ export default function LocationMenu() {
   });
 
   const getLocations = async () => {
-    const response = await apiClient.indexLocations();
-    if (
+    const response = await indexLocations(apiClient);
+    if (response.status === 204) setLocations([]);
+    else if (
       response.body &&
       typeOf<{ locations: Without<Location, "campuses">[] }>(
         "locations",
@@ -58,9 +61,9 @@ export default function LocationMenu() {
       setLocations(response.body.locations);
   };
 
-  const deleteLocation = async () => {
+  const removeLocation = async () => {
     if (shownLocation) {
-      const response = await apiClient.deleteLocation(shownLocation.id);
+      const response = await deleteLocation(apiClient, shownLocation.id);
       if (response.status === 204) {
         /*  MySwal.fire({
           position: "top-end",
@@ -188,7 +191,7 @@ export default function LocationMenu() {
               {showMessage ? (
                 <DeleteMessage
                   thing="Ubicación"
-                  deleteAction={deleteLocation}
+                  deleteAction={removeLocation}
                   hide={() => {
                     setShowMessage(false);
                   }}

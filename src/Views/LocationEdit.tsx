@@ -11,6 +11,8 @@ import { AuthContext, AuthProviderPayload } from "../Components/AuthProvider";
 // Payloads impors
 import { Payload, Location } from "../helpers/payloads";
 import { typeOf } from "../helpers/validationFunctions";
+// API Client
+import { getLocation, updateLocation } from "../helpers/apiClient";
 
 export default function LocationEdit() {
   // Context
@@ -23,7 +25,7 @@ export default function LocationEdit() {
   // Effect
   useEffect(() => {
     const findLocation = async () => {
-      const location = (await apiClient.getLocation(id)).body;
+      const location = (await getLocation(apiClient, id)).body;
       if (typeOf<Location>("id", location)) setLocation(location);
       else console.log(location);
     };
@@ -31,7 +33,7 @@ export default function LocationEdit() {
   });
 
   const update = (l: Payload<Location>) => {
-    return apiClient.updateLocation(id, l);
+    return updateLocation(apiClient, id, l);
   };
 
   return (

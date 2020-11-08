@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 // Context imports
 import { ResponsiveContext, RespContextPayload } from "../Components/Routes";
 import { AuthContext, AuthProviderPayload } from "../Components/AuthProvider";
@@ -17,6 +16,7 @@ import ProgresiveBar from "../Components/ProgresiveBar";
 
 //Import calendar
 import Calendar from "../Components/Calendar";
+import { deleteLocation, indexLocations } from "../helpers/apiClient";
 
 export default function LocationMenu() {
   const { sidebarHidden } = useContext(ResponsiveContext) as RespContextPayload;
@@ -35,7 +35,7 @@ export default function LocationMenu() {
   const firstUpdate = useRef(true);
 
   const getLocations = async () => {
-    const response = await apiClient.indexLocations();
+    const response = await indexLocations(apiClient);
     if (
       response.body &&
       typeOf<{ locations: Without<Location, "campuses">[] }>(
@@ -46,9 +46,9 @@ export default function LocationMenu() {
       setLocations(response.body.locations);
   };
 
-  const deleteLocation = async () => {
+  const removeLocation = async () => {
     if (shownLocation) {
-      const response = await apiClient.deleteLocation(shownLocation.id);
+      const response = await deleteLocation(apiClient, shownLocation.id);
       if (response.status === 204) {
         setShownLocation(undefined);
         getLocations();
@@ -142,7 +142,7 @@ export default function LocationMenu() {
               {showCalendar ? (
                 <ShowCalendar
                   thing="Elije"
-                  deleteAction={deleteLocation}
+                  deleteAction={removeLocation}
                   hide={() => {
                     setShowCalendar(false);
                   }}

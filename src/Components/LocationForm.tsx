@@ -90,7 +90,6 @@ const LocationForm = ({ location, writeAction }: LocationFromProps) => {
     } else {
       setSubmitting(false);
       if (marker) {
-        console.log(values);
         const newLocation: LocationPayload = {
           ...values,
           max_capacity: +values.max_capacity,
@@ -144,7 +143,6 @@ const LocationForm = ({ location, writeAction }: LocationFromProps) => {
                 <LocationFields
                   address={address}
                   setFieldValue={setFieldValue}
-                  
                 />
               </div>
             </div>

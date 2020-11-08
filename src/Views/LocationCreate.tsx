@@ -9,13 +9,14 @@ import SideBar from "../Components/SideBar";
 // Provider imports
 import { ResponsiveContext, RespContextPayload } from "../Components/Routes";
 import { AuthContext, AuthProviderPayload } from "../Components/AuthProvider";
+import { createLocation } from "../helpers/apiClient";
 
 const LocationView = () => {
   const { sidebarHidden } = useContext(ResponsiveContext) as RespContextPayload;
   const { apiClient } = useContext(AuthContext) as AuthProviderPayload;
 
   const create = (location: Payload<Location>) => {
-    return apiClient.createLocation(location);
+    return createLocation(apiClient, location);
   };
 
   return (

@@ -1,11 +1,16 @@
 import React, { createContext, ReactNode, useReducer, useEffect } from "react";
 // Helper imports
-import EventosudgApiClient, { ClientResponse } from "../helpers/apiClient";
+import Apiclient, {
+  ClientResponse,
+  signIn,
+  signOut,
+  refreshToken,
+} from "../helpers/apiClient";
 // Payload imports
 import { UserCredentials } from "../helpers/payloads";
 
 export const AuthContext = createContext({});
-const apiClient = new EventosudgApiClient("http://afterbyte.wtf:3000/");
+const apiClient = new Apiclient("http://localhost:3001/");
 
 type AuthProviderProps = {
   children?: ReactNode;
@@ -23,7 +28,7 @@ type DispatchValue = {
 };
 
 export type AuthProviderPayload = {
-  apiClient: EventosudgApiClient;
+  apiClient: Apiclient;
   signin(user: UserCredentials): Promise<ClientResponse>;
   signout(): Promise<void>;
 };
@@ -61,7 +66,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffect(() => {
     const refresh = async () => {
       try {
-        await apiClient.refreshToken();
+        await refreshToken(apiClient);
         dispatch({ type: "restoreToken" });
       } catch (error) {
         console.log(error);
@@ -74,12 +79,12 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const providerPayload: AuthProviderPayload = {
     apiClient: apiClient,
     signin: async (user: UserCredentials) => {
-      const response = await apiClient.signIn(user);
+      const response = await signIn(apiClient, user);
       dispatch({ type: "signIn", token: apiClient.tokenLoaded });
       return response;
     },
     signout: async () => {
-      await apiClient.signOut();
+      await signOut(apiClient);
       dispatch({ type: "signOut" });
     },
   };

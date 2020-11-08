@@ -21,15 +21,27 @@ export type Attachment = {
 };
 
 export type User = {
+  id: string;
+  siiau_id: string;
+  person: Person;
+  career: Career;
+  campus: Campus;
+  role: Role;
+};
+
+export type Role = {
+  id: string;
   name: string;
-  lastname: string;
-  secondlastname: string;
-  image?: Attachment;
+};
+
+export type Career = {
+  id: string;
+  name: string;
 };
 
 export type Event = {
   id: string;
-  name: string; 
+  name: string;
   capacity: number;
   enrolled: boolean;
   description: string;
@@ -49,6 +61,7 @@ export type Campus = {
   id: string;
   name: string;
   city: string;
+  attachmend_id?: string;
   image?: Attachment;
 };
 

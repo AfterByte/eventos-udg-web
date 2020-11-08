@@ -11,20 +11,19 @@ import { AuthContext, AuthProviderPayload } from "./AuthProvider";
 // Views imports
 import LoginView from "../Views/LoginView";
 import UpcomingEvents from "../Views/UpcomingEvents";
-import SampleView from "../Views/SampleView";
 import ViewTickets from "../Views/ViewTickets";
 import LocationMenu from "../Views/LocationMenu";
 import LocationDetails from "../Views/LocationDetails";
 import LocationCreate from "../Views/LocationCreate";
 import LocationEdit from "../Views/LocationEdit";
 import CampusesMenu from "../Views/CampusesMenu";
-import CreateEventView from "../Views/CreateEventView";
-import ViewItems from '../Views/ViewItems';
+import ViewItems from "../Views/ViewItems";
 import CreateEventForm from "../Views/CreateEvent";
 import CreateEventLocation from "../Views/CreateEventView";
+import SampleView from "../Views/SampleView";
 // Mock data
 import { Event } from "./EventCard";
-import { events, campuses } from "../helpers/mockData";
+import { events } from "../helpers/mockData";
 
 const AuthNavigator = () => {
   return (
@@ -59,7 +58,6 @@ const AppNavigator = () => {
         <Route path="/events">
           <UpcomingEvents events={events as Event[]} />
         </Route>
-        <Route path="/samplemaps" component={SampleView} />
         <Route exact path="/locations" component={LocationMenu} />
         <Route exact path="/locations/new" component={LocationCreate} />
         <Route exact path="/locations/:id" component={LocationDetails} />
@@ -67,10 +65,11 @@ const AppNavigator = () => {
         <Route path="/myTickets" component={ViewTickets} />
         <Route path="/createEvent" component={CreateEventLocation} />
         <Route path="/campuses">
-          <CampusesMenu campuses={campuses} />
+          <CampusesMenu />
         </Route>
-        <Route path="/createEventForm" component={CreateEventForm}></Route>
-        <Route path="/items" component={ViewItems}/>
+        <Route path="/createEventForm" component={CreateEventForm} />
+        <Route path="/items" component={ViewItems} />
+        <Route path="/sample" component={SampleView} />
       </Switch>
     </ResponsiveContext.Provider>
   );

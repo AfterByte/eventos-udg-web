@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import SideBar from "../Components/SideBar";
 import Header from "../Components/Header";
 import DeleteMessage from "../Components/DeleteMessage";
@@ -16,6 +16,12 @@ import { AuthContext, AuthProviderPayload } from "../Components/AuthProvider";
 // Payloads impors
 import { Location, Without } from "../helpers/payloads";
 import { typeOf } from "../helpers/validationFunctions";
+// API Client
+import {
+  getLocation,
+  indexLocations,
+  deleteLocation,
+} from "../helpers/apiClient";
 
 export default function LocationDetails() {
   // Context
@@ -27,17 +33,13 @@ export default function LocationDetails() {
   const [location, setLocation] = useState<Location>();
   const [marker, setMarker] = useState<IMarker>();
   const [showMessage, setShowMessage] = useState(false);
-  const [shownLocation, setShownLocation] = useState<
-    Without<Location, "campuses">
-  >();
-  const [locations, setLocations] = useState<Without<Location, "campuses">[]>(
-    []
-  );
   const [enablePermitedLocations, setEnablePermitedLocations] = useState(false);
+
+  const history = useHistory();
   // Effect
   useEffect(() => {
     const findLocation = async () => {
-      const location = (await apiClient.getLocation(id)).body;
+      const location = (await getLocation(apiClient, id)).body;
       if (typeOf<Location>("id", location)) setLocation(location);
       else console.log(location);
     };
@@ -51,25 +53,13 @@ export default function LocationDetails() {
   });
 
   /**TEST: CHECK IF THIS WORKS */
-  const deleteLocation = async () => {
-    if (shownLocation) {
-      const response = await apiClient.deleteLocation(shownLocation.id);
+  const removeLocation = async () => {
+    if (location) {
+      const response = await deleteLocation(apiClient, location.id);
       if (response.status === 204) {
-        setShownLocation(undefined);
-        getLocations();
+        history.push("/locations");
       } else console.log(response);
     }
-  };
-  const getLocations = async () => {
-    const response = await apiClient.indexLocations();
-    if (
-      response.body &&
-      typeOf<{ locations: Without<Location, "campuses">[] }>(
-        "locations",
-        response.body
-      )
-    )
-      setLocations(response.body.locations);
   };
 
   //for google map
@@ -109,9 +99,13 @@ export default function LocationDetails() {
           <div className="col-span-6 sm:col-start-2 sm:col-end-7 w-full h-full pt-24 sm:pt-24 z-0 pb-24 sm:pb-0 bg-indigo-500 bg-opacity-50">
             <div className="grid grid-cols-6 mt-4 xl:mt-4 sm:mt-6 mb-4 sm:mb-8 h-auto">
               {/* Firts section - LOCATION DETAILS */}
-              <div className={enablePermitedLocations
-                              ? "col-span-6 xl:col-span-4 grid grid-cols-6 gap-4 bg-white ml-2 xl:ml-4 mr-2 rounded-md shadow-sm"
-                              : "col-span-6 xl:col-span-6 grid grid-cols-6 gap-4 bg-white ml-2 xl:ml-4 mr-4 rounded-md shadow-sm"}>
+              <div
+                className={
+                  enablePermitedLocations
+                    ? "col-span-6 xl:col-span-4 grid grid-cols-6 gap-4 bg-white ml-2 xl:ml-4 mr-2 rounded-md shadow-sm"
+                    : "col-span-6 xl:col-span-6 grid grid-cols-6 gap-4 bg-white ml-2 xl:ml-4 mr-4 rounded-md shadow-sm"
+                }
+              >
                 <div className="col-span-5 mt-2 ml-2">
                   <div className="grid grid-cols-1">
                     <label htmlFor="name" className="pb-2">
@@ -221,7 +215,7 @@ export default function LocationDetails() {
               </div>
 
               {/* Second section - CAMPUS PERMITED LOCATIONS */}
-              {enablePermitedLocations ?
+              {enablePermitedLocations ? (
                 <div className="col-span-6 xl:col-span-2 bg-white ml-2 mr-2 xl:mr-4 rounded-md shadow-sm mt-4 xl:mt-0 pb-4 xl:pb-0">
                   <div className="col-span-2 grid grid-cols-6 mt-4 ml-2 mr-2">
                     <div className="col-span-6 border-b-4">
@@ -234,8 +228,8 @@ export default function LocationDetails() {
                         </div>
                         <p className="col-span-10 text-sm">
                           Solo los organizadores de las universidades aquí
-                          indicadas podrán hacer uso de esta ubicación al crear un
-                          evento.
+                          indicadas podrán hacer uso de esta ubicación al crear
+                          un evento.
                         </p>
                       </div>
                     </div>
@@ -273,21 +267,25 @@ export default function LocationDetails() {
                       <div className="col-span-3 py-2 flex justify-between items-center border border-gray-500">
                         <p className="text-center pl-2">{campus.name}</p>
                         <button>
-                          <img className="h-6" src={Clear} alt={"ClearTagIcon"} />
+                          <img
+                            className="h-6"
+                            src={Clear}
+                            alt={"ClearTagIcon"}
+                          />
                         </button>
                       </div>
                     ))}
                   </div>
                 </div>
-                : <div className="hidden"></div>
-              }
-              
+              ) : (
+                <div className="hidden"></div>
+              )}
             </div>
 
             {showMessage ? (
               <DeleteMessage
                 thing="Ubicación"
-                deleteAction={deleteLocation}
+                deleteAction={removeLocation}
                 hide={() => setShowMessage(false)}
               />
             ) : (
