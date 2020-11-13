@@ -95,3 +95,9 @@ export type Status = {
   id: string;
   name: string;
 };
+
+export type Item = {
+  id: string;
+  name: string;
+  countable: boolean;
+};

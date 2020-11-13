@@ -208,3 +208,11 @@ export const eventsTickets:Event[]=[
     reservation:{location,end:new Date(),start:new Date()},
   }
 ]
+
+export const itemsObject=[
+  {
+    id:"0",
+    name: "sillas gamer",
+    countable: true,
+  }
+]

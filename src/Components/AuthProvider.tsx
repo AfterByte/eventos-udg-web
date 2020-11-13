@@ -1,4 +1,5 @@
 import React, { createContext, ReactNode, useReducer, useEffect } from "react";
+
 // Helper imports
 import Apiclient, {
   ClientResponse,
@@ -10,7 +11,7 @@ import Apiclient, {
 import { UserCredentials } from "../helpers/payloads";
 
 export const AuthContext = createContext({});
-const apiClient = new Apiclient("http://localhost:3001/");
+const apiClient = new Apiclient("http://afterbyte.wtf:3000/");
 
 type AuthProviderProps = {
   children?: ReactNode;
