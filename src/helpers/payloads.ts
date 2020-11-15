@@ -101,3 +101,22 @@ export type Item = {
   name: string;
   countable: boolean;
 };
+
+export type Search = {
+  name?: string;
+  page?: number;
+  limit?: number;
+  orderBy?: string[]; // Use "field:asc" or "field:desc"
+};
+
+export type EventSearch = {
+  preset?: string;
+  tags?: string[];
+  date?: string;
+  start?: string;
+  end?: string;
+} & Search;
+
+export type UserSearch = {
+  role?: string;
+} & Search;

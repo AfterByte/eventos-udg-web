@@ -108,3 +108,4 @@ export * from "./connectionTest";
 export * from "./locations";
 export * from "./sessions";
 export * from "./attachments";
+export * from "./events";

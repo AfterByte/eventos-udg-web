@@ -1,6 +1,13 @@
 import ApiClient, { detachBody } from ".";
 import { ClientResponse } from ".";
-import { Message, Optional, Payload, Without, Location } from "../payloads";
+import {
+  Message,
+  Optional,
+  Payload,
+  Without,
+  Location,
+  Event,
+} from "../payloads";
 
 /* Locations requests */
 
@@ -103,6 +110,22 @@ export async function addCampusesToLocation(
       body: JSON.stringify({ campuses }),
     });
     const body = await detachBody(response);
+    return { body, status: response.status };
+  } catch (error) {
+    throw new Error("There was a problem while fetching the remote source!");
+  }
+}
+
+export async function upcomingLocationEvents(
+  client: ApiClient,
+  id: string
+): Promise<ClientResponse<{ events: Event[] } | Message>> {
+  try {
+    const response = await fetch(`${client.url}api/locations/${id}/events`, {
+      method: "GET",
+      headers: client.headers,
+    });
+    const body = await detachBody<{ events: Event[] }>(response);
     return { body, status: response.status };
   } catch (error) {
     throw new Error("There was a problem while fetching the remote source!");
