@@ -3,17 +3,14 @@ import SideBar from "../Components/SideBar";
 import EventCard, { Event } from "../Components/EventCard";
 import Header from "../Components/Header";
 import Taskbar from "../Components/TaskBar";
+import { events } from "../helpers/mockData";
 
 import { ResponsiveContext, RespContextPayload } from "../Components/Routes";
 
-interface EventProps {
-  events: Event[];
-}
-
-const UpcomingEvents = ({ events }: EventProps) => {
+const UpcomingEvents = () => {
   const { sidebarHidden } = useContext(ResponsiveContext) as RespContextPayload;
   const eventCards: any = [];
-  for (const event of events) {
+  for (const event of events as Event[]) {
     eventCards.push(<EventCard event={event} />);
   }
   return (
