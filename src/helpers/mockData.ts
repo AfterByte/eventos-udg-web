@@ -206,7 +206,40 @@ export const eventsTickets:Event[]=[
     guests:[],
     tags:[],
     reservation:{location,end:new Date(),start:new Date()},
-  }
+  },{
+    id: "2",
+    name: "Marcha en contra del clasismo en lol",
+    capacity: 20,
+    enrolled: true,
+    description: "an Empty event",
+    organizer: {id:"12",second_lastname:"del rio",lastname:"santana",name:"arturo"},
+    status: {id:"15",name:"activo"},
+    guests:[],
+    tags:[],
+    reservation:{location,end:new Date(),start:new Date()},
+  },{
+    id: "3",
+    name: "Evento como prueba secundaria",
+    capacity: 100,
+    enrolled: true,
+    description: "Un evento interesante",
+    organizer: {id:"15",second_lastname:"antionio",lastname:"becerra",name:"Serch"},
+    status: {id:"50", name:"activo"},
+    guests:[],
+    tags:[],
+    reservation:{location,end:new Date(),start:new Date()},
+  },{
+    id: "50",
+    name: "Evento como prueba secundaria referente al indice de MIT",
+    capacity: 100,
+    enrolled: true,
+    description: "Un evento interesante",
+    organizer: {id:"15",second_lastname:"antionio",lastname:"becerra",name:"Serch"},
+    status: {id:"50", name:"activo"},
+    guests:[],
+    tags:[],
+    reservation:{location,end:new Date(),start:new Date()},
+  },
 ]
 
 export const itemsObject=[
