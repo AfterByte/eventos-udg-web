@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
+//import external components
 import SideBar from "../Components/SideBar";
-import EventCard, { Event } from "../Components/EventCard";
+import EventCard from "../Components/EventCard";
 import Header from "../Components/Header";
 import Taskbar from "../Components/TaskBar";
 import { events } from "../helpers/mockData";
+//import event interface
+import { Event } from "../helpers/payloads"
 
 import { ResponsiveContext, RespContextPayload } from "../Components/Routes";
 

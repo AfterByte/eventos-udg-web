@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { ResponsiveContext, RespContextPayload } from "../Components/Routes";
 //import components
 import SideBar from "../Components/SideBar";
-import EventCard, { Event } from "../Components/EventCard";
 import Header from "../Components/Header";
 import Maps from "../Components/Maps";
 import CreateEventForm from "../Components/CreateEventForm";

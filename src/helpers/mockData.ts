@@ -1,57 +1,4 @@
-import { Event, Location } from "./payloads";
-
-export const events = [
-  {
-    id: 0,
-    name: "Evento 0",
-    capacity: 20,
-    description: "an Empty event",
-    organizer: "Dios",
-    status: "Disponible",
-    date: "17/Ago/2020 09:30am",
-    maxCapacity: 31,
-  },
-  {
-    id: 1,
-    name: "Evento 1",
-    capacity: 20,
-    description: "an Empty event",
-    organizer: "Dios",
-    status: "Disponible",
-    date: "17/Ago/2020 09:30am",
-    maxCapacity: 31,
-  },
-  {
-    id: 2,
-    name: "Evento 2",
-    capacity: 20,
-    description: "an Empty event",
-    organizer: "Dios",
-    status: "Disponible",
-    date: "17/Ago/2020 09:30am",
-    maxCapacity: 31,
-  },
-  {
-    id: 2,
-    name: "Evento 2",
-    capacity: 20,
-    description: "an Empty event",
-    organizer: "Dios",
-    status: "Disponible",
-    date: "17/Ago/2020 09:30am",
-    maxCapacity: 31,
-  },
-  {
-    id: 2,
-    name: "Evento 2",
-    capacity: 20,
-    description: "an Empty event",
-    organizer: "Dios",
-    status: "Disponible",
-    date: "17/Ago/2020 09:30am",
-    maxCapacity: 31,
-  },
-];
+import { Event, Location, Person } from "./payloads";
 
 export const locations = [
   {
@@ -157,28 +104,28 @@ export const locations = [
 
 export const campuses = [
   {
-    id:0,
+    id:"0",
     name: "Centro Universitario del Sur",
-    campus: "Campus Cd. Guzmán",
-    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.cntraveler.com%2Fphotos%2F56953c34e17ca74e420e0a3b%2Fmaster%2Fw_1024%2Cc_limit%2FGettyImages-University-of-Chicago-Matt-Frankel-correced.jpg&f=1&nofb=1"
+    city: "Campus Cd. Guzmán",
+    image: undefined
   },
   {
-    id:1,
+    id:"1",
     name: "Centro Universitario de Consti",
-    campus: "Campus America",
-    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.ZIHzdcm03BPIJIHJAujcpgHaED%26pid%3DApi&f=1"
+    city: "Campus America",
+    image: undefined
   },
   {
-    id:2,
+    id:"2",
     name: "Centro Universitario de Piedras negras",
-    campus: "Campus Melaque",
-    image: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fblogs.ubc.ca%2Fallisonlee%2Ffiles%2F2013%2F10%2FTop-10-Universities-in-USA.jpg&f=1&nofb=1"
+    city: "Campus Melaque",
+    image: undefined
   },
   {
-    id:3,
+    id:"3",
     name: "Centro Universitario de las Pecas",
-    campus: "Campus Puerto Vallarta",
-    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thoughtco.com%2Fthmb%2FP2VM2iEskutbaPxd7L1Hbk104-0%3D%2F1600x1067%2Ffilters%3Afill(auto%2C1)%2FPatrick-Nouhailler-Introduction-Princeton-56a188903df78cf7726bceef.jpg&f=1&nofb=1"
+    city: "Campus Puerto Vallarta",
+    image: undefined
   }
 ]
 
@@ -201,7 +148,7 @@ export const eventsTickets:Event[]=[
     capacity: 20,
     enrolled: true,
     description: "an Empty event",
-    organizer: {id:"12",second_lastname:"del rio",lastname:"santana",name:"arturo"},
+    organizer: {id:"12", second_lastname:"del rio",lastname:"santana",name:"arturo"},
     status: {id:"15",name:"activo"},
     guests:[],
     tags:[],
@@ -249,3 +196,149 @@ export const itemsObject=[
     countable: true,
   }
 ]
+
+export const items=[
+  {
+    id: 0,
+    name: "Sillas",
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thoughtco.com%2Fthmb%2FP2VM2iEskutbaPxd7L1Hbk104-0%3D%2F1600x1067%2Ffilters%3Afill(auto%2C1)%2FPatrick-Nouhailler-Introduction-Princeton-56a188903df78cf7726bceef.jpg&f=1&nofb=1"
+  },
+  {
+    id: 1,
+    name: "Proyector",
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thoughtco.com%2Fthmb%2FP2VM2iEskutbaPxd7L1Hbk104-0%3D%2F1600x1067%2Ffilters%3Afill(auto%2C1)%2FPatrick-Nouhailler-Introduction-Princeton-56a188903df78cf7726bceef.jpg&f=1&nofb=1"
+  },
+  {
+    id: 2,
+    name: "Pantalla blanca",
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thoughtco.com%2Fthmb%2FP2VM2iEskutbaPxd7L1Hbk104-0%3D%2F1600x1067%2Ffilters%3Afill(auto%2C1)%2FPatrick-Nouhailler-Introduction-Princeton-56a188903df78cf7726bceef.jpg&f=1&nofb=1"
+  },
+  {
+    id: 3,
+    name: "Pantalla LED",
+    image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thoughtco.com%2Fthmb%2FP2VM2iEskutbaPxd7L1Hbk104-0%3D%2F1600x1067%2Ffilters%3Afill(auto%2C1)%2FPatrick-Nouhailler-Introduction-Princeton-56a188903df78cf7726bceef.jpg&f=1&nofb=1"
+  }
+]
+
+export const careers=[
+  {
+    id: "1",
+    name: "Telematica"
+  },
+  {
+    id: "2",
+    name: "Izquierdo"
+  },
+  {
+    id: "3",
+    name: "Veterinaria"
+  },
+  {
+    id: "4",
+    name: "Medicina"
+  }
+]
+
+export const roles=[
+  {
+    id: "0",
+    name: "Administrador"
+  },
+  {
+    id: "1",
+    name: "NO Administrador"
+  }
+]
+
+export const users=[
+  {
+    id: "0",
+    siiau_id: "abcdeefasd",
+    person: {id:"15", name: "JUAN CARLOS", lastname: "SANTIAGO", second_lastname: "CHETOS", image: undefined},
+    career: careers[0],
+    campus: campuses[0],
+    role: roles[1]
+  },
+  {
+    id: "1",
+    siiau_id: "abcdhefasd",
+    person: {id:"15", name: "PEP", lastname: "SANCHEZ", second_lastname: "MORTY", image: undefined},
+    career: careers[1],
+    campus: campuses[0],
+    role: roles[0]
+  },
+  {
+    id: "2",
+    siiau_id: "abcdeefbsd",
+    person: {id:"15", name: "SUMMER", lastname: "LOPEZ", second_lastname: "LOPEZ", image: undefined},
+    career: careers[2],
+    campus: campuses[0],
+    role: roles[1]
+  },
+]
+export const persons:Person[] = [
+  {
+    id: "0",
+    name: "Pep",
+    lastname: "Sanchez",
+    second_lastname: "Sanchez",
+    image: undefined
+  },
+  {
+    id:"1",
+    name: "Morty",
+    lastname: "Sanchez",
+    second_lastname: "Sanchez",
+    image: undefined
+  },
+]
+export const events = [
+  {
+    id: "0",
+    name: "Marcha en contra del acoso",
+    capacity: 20,
+    enrolled: false,
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus ex et enim lacinia commodo. Ut sit amet massa in eros porttitor pellentesque non vel turpis. Cras sed urna in arcu condimentum maximus. Maecenas nec metus ac libero luctus malesuada vel eu nibh. Maecenas suscipit turpis lacus, vel pulvinar turpis mollis fermentum.",
+    organizer: {id:"15", second_lastname:"del rio",lastname:"santana",name:"arturo"},
+    status: {id:"15",name:"activo"},
+    guests:[persons[0]],
+    tags:[],
+    reservation:{location,end:new Date(),start:new Date()},
+  },
+  {
+    id: "1",
+    name: "Marcha en contra del acoso 2: La revancha",
+    capacity: 20,
+    enrolled: false,
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus ex et enim lacinia commodo. Ut sit amet massa in eros porttitor pellentesque non vel turpis. Cras sed urna in arcu condimentum maximus. Maecenas nec metus ac libero luctus malesuada vel eu nibh. Maecenas suscipit turpis lacus, vel pulvinar turpis mollis fermentum.",
+    organizer: {id:"15", second_lastname:"del rio",lastname:"santana",name:"arturo"},
+    status: {id:"15",name:"activo"},
+    guests:[persons[1]],
+    tags:[],
+    reservation:{location,end:new Date(),start:new Date()},
+  },
+  {
+    id: "2",
+    name: "La insurrección patriarcal",
+    capacity: 20,
+    enrolled: false,
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus ex et enim lacinia commodo. Ut sit amet massa in eros porttitor pellentesque non vel turpis. Cras sed urna in arcu condimentum maximus. Maecenas nec metus ac libero luctus malesuada vel eu nibh. Maecenas suscipit turpis lacus, vel pulvinar turpis mollis fermentum. ",
+    organizer: {id:"15", second_lastname:"del rio",lastname:"santana",name:"arturo"},
+    status: {id:"15",name:"activo"},
+    guests:[persons[0], persons[1]],
+    tags:[],
+    reservation:{location,end:new Date(),start:new Date()},
+  },
+  {
+    id: "3",
+    name: "El destino genérico: El final de la saga",
+    capacity: 20,
+    enrolled: true,
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus ex et enim lacinia commodo. Ut sit amet massa in eros porttitor pellentesque non vel turpis. Cras sed urna in arcu condimentum maximus. Maecenas nec metus ac libero luctus malesuada vel eu nibh. Maecenas suscipit turpis lacus, vel pulvinar turpis mollis fermentum.",
+    organizer: {id:"15", second_lastname:"del rio",lastname:"santana",name:"arturo"},
+    status: {id:"15",name:"activo"},
+    guests:[persons[0], persons[1], persons[0]],
+    tags:[],
+    reservation:{location,end:new Date(),start:new Date()},
+  }
+];

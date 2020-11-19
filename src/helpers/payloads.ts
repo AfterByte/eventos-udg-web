@@ -29,11 +29,6 @@ export type User = {
   role: Role;
 };
 
-export type Role = {
-  id: string;
-  name: string;
-};
-
 export type Career = {
   id: string;
   name: string;
@@ -96,6 +91,10 @@ export type Status = {
   name: string;
 };
 
+export type Role = {
+  id: string;
+  name: string;
+};
 export type Item = {
   id: string;
   name: string;

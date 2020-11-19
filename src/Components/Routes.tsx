@@ -20,6 +20,8 @@ import CampusesMenu from "../Views/CampusesMenu";
 import ViewItems from "../Views/ViewItems";
 import CreateEventForm from "../Views/CreateEvent";
 import CreateEventLocation from "../Views/CreateEventView";
+import UsersView from "../Views/UsersView"
+import EventDetails from "../Views/EventDetailView"
 import SampleView from "../Views/SampleView";
 
 const AuthNavigator = () => {
@@ -52,6 +54,9 @@ const AppNavigator = () => {
       <Switch>
         <Redirect exact from="/signin" to="/" />
         <Redirect exact from="/" to="/events" />
+        <Route exact path="/events" component={UpcomingEvents}/>
+        <Route exact path="/events/:id" component={EventDetails}/>
+        <Route path="/samplemaps" component={SampleView} />
         <Route exact path="/events" component={UpcomingEvents} />
         <Route exact path="/events/new" component={CreateEventLocation} />
         <Route exact path="/locations" component={LocationMenu} />
@@ -59,6 +64,9 @@ const AppNavigator = () => {
         <Route exact path="/locations/:id" component={LocationDetails} />
         <Route exact path="/locations/:id/edit" component={LocationEdit} />
         <Route path="/myTickets" component={ViewTickets} />
+        <Route path="/createEvent" component={CreateEventLocation} />
+        <Route path="/createEventForm" component={CreateEventForm}></Route>
+        <Route path="/users" component={UsersView}></Route>
         <Route path="/campuses" component={CampusesMenu} />
         <Route path="/createEventForm" component={CreateEventForm} />
         <Route path="/items" component={ViewItems} />
