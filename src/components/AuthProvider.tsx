@@ -11,7 +11,8 @@ import Apiclient, {
 import { UserCredentials } from "../helpers/payloads";
 
 export const AuthContext = createContext({});
-const apiClient = new Apiclient("http://afterbyte.wtf:3000/");
+const server = process.env.REACT_APP_API_HOST || "http://afterbyte.wtf:3000/";
+const apiClient = new Apiclient(server);
 
 type AuthProviderProps = {
   children?: ReactNode;
