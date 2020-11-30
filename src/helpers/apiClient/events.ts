@@ -1,20 +1,13 @@
 import formUrlEncoded from "form-urlencoded";
 import ApiClient, { detachBody, jsonToFormdata } from ".";
 import { ClientResponse } from ".";
-import { Event, EventSearch, Message, Optional, Without } from "../payloads";
-
-type EventPayload = {
-  name: string;
-  capacity: number;
-  description: string;
-  people?: string[];
-  tags?: string[];
-  reservation: {
-    locationId: string;
-    start: string;
-    end: string;
-  };
-};
+import {
+  Event,
+  EventPayload,
+  EventSearch,
+  Message,
+  Optional,
+} from "../payloads";
 
 export async function indexEvents(
   client: ApiClient,
@@ -33,8 +26,46 @@ export async function indexEvents(
   }
 }
 
-export async function upcomingEvents(client: ApiClient, page = 1) {
-  return await indexEvents(client, { preset: "upcoming", page });
+export async function ownedEvents(
+  client: ApiClient,
+  search?: EventSearch
+): Promise<ClientResponse<{ events: Event[] } | Message>> {
+  try {
+    const query = formUrlEncoded(search);
+    const response = await fetch(`${client.url}api/profile/events?${query}`, {
+      method: "GET",
+      headers: client.headers,
+    });
+    const body = await detachBody<{ events: Event[] }>(response);
+    return { body, status: response.status };
+  } catch (error) {
+    throw new Error("There was a problem while fetching the remote source!");
+  }
+}
+
+export async function locationEvents(
+  client: ApiClient,
+  locationId: string,
+  search?: EventSearch
+): Promise<ClientResponse<{ events: Event[] } | Message>> {
+  try {
+    const query = formUrlEncoded(search);
+    const response = await fetch(
+      `${client.url}api/locations/${locationId}/events?${query}`,
+      {
+        method: "GET",
+        headers: client.headers,
+      }
+    );
+    const body = await detachBody<{ events: Event[] }>(response);
+    return { body, status: response.status };
+  } catch (error) {
+    throw new Error("There was a problem while fetching the remote source!");
+  }
+}
+
+export async function upcomingEvents(client: ApiClient, search?: EventSearch) {
+  return await indexEvents(client, { preset: "upcoming", ...search });
 }
 
 export async function getEvent(
@@ -101,13 +132,13 @@ export async function updateEvent(
 export async function updateEventStatus(
   client: ApiClient,
   id: string,
-  status: { status: string }
+  status: string
 ): Promise<ClientResponse<Message>> {
   try {
     const response = await fetch(`${client.url}api/events/${id}`, {
       method: "PUT",
       headers: client.headers,
-      body: JSON.stringify(status),
+      body: JSON.stringify({ status }),
     });
     const body = await detachBody(response);
     return { body, status: response.status };

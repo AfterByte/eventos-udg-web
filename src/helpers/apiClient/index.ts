@@ -109,3 +109,8 @@ export * from "./locations";
 export * from "./sessions";
 export * from "./attachments";
 export * from "./events";
+export * from "./items";
+export * from "./users";
+export * from "./tickets";
+export * from "./tags";
+export * from "./people";

@@ -38,25 +38,45 @@ export type Event = {
   id: string;
   name: string;
   capacity: number;
-  enrolled: boolean;
+  enrolled: number;
   description: string;
   organizer: Person;
   guests: Person[];
   tags: Tag[];
   status: Status;
-  reservation: {
-    location: Location;
-    start: Date;
-    end: Date;
-  };
+  reservation: Reservation;
   image?: Attachment;
+};
+
+export type EventPayload = {
+  name: string;
+  capacity: number;
+  description: string;
+  people?: string[];
+  tags?: Optional<Tag>[];
+  reservation: {
+    locationId: string;
+    start: string;
+    end: string;
+  };
+};
+
+export type Reservation = {
+  location: Location;
+  start: Date | string;
+  end: Date | string;
+};
+
+export type Ticket = {
+  id: string;
+  event: Event;
 };
 
 export type Campus = {
   id: string;
   name: string;
   city: string;
-  attachmend_id?: string;
+  attachment_id?: string;
   image?: Attachment;
 };
 
@@ -79,6 +99,7 @@ export type Person = {
   lastname: string;
   second_lastname: string;
   image?: Attachment;
+  attachment_id?: string;
 };
 
 export type Tag = {

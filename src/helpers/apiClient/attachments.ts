@@ -17,7 +17,7 @@ export async function getImage(
       method: "GET",
       headers,
     });
-    console.log(response.status);
+
     if (response.status === 200) {
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
