@@ -13,6 +13,9 @@ import {
   updateCampus,
 } from "../../helpers/apiClient";
 import { typeOf } from "../../helpers/validationFunctions";
+/**ALERTS WITH SWEETALERT */
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 interface CampusFormProps {
   changeShowForm(): void | Promise<void>;
@@ -35,6 +38,20 @@ export default function CampusForm({
     setImage(event.target.files[0]);
   };
 
+  /**CONST FOR USE SWEETALERT */
+  const MySwal = withReactContent(Swal);
+  const Toast = MySwal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", MySwal.stopTimer);
+      toast.addEventListener("mouseleave", MySwal.resumeTimer);
+    },
+  });
+
   return (
     <div className="absolute bg-black bg-opacity-25 w-full h-full flex flex-col justify-center">
       <Formik
@@ -47,19 +64,44 @@ export default function CampusForm({
           { setSubmitting }
         ) => {
           setSubmitting(true);
+          if (values.name == "") {
+            Toast.fire({
+              icon: "error",
+              title: "El campo nombre esta vacio",
+            });
+          } else if (values.city == "") {
+            Toast.fire({
+              icon: "error",
+              title: "El campo sede esta vacio",
+            });
+          } else if (image?.name == undefined) {
+            Toast.fire({
+              icon: "error",
+              title: "Necesitas añadir una imagen",
+            });
+          } else {
+            let response: ClientResponse<Campus | Message>;
+            // Make request
+            if (campus)
+              response = await updateCampus(
+                apiClient,
+                campus.id,
+                values,
+                image
+              );
+            else response = await createCampus(apiClient, values, image);
+            Toast.fire({
+              icon: "success",
+              title: "Campus creado/modificado con exito",
+            });
 
-          let response: ClientResponse<Campus | Message>;
-          // Make request
-          if (campus)
-            response = await updateCampus(apiClient, campus.id, values, image);
-          else response = await createCampus(apiClient, values, image);
+            setSubmitting(false);
 
-          setSubmitting(false);
-
-          if (response.status < 300 && typeOf<Campus>("id", response.body)) {
-            setShownCampus(response.body);
-            getCampuses();
-            changeShowForm();
+            if (response.status < 300 && typeOf<Campus>("id", response.body)) {
+              setShownCampus(response.body);
+              getCampuses();
+              changeShowForm();
+            }
           }
         }}
       >

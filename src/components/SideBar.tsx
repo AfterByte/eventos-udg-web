@@ -27,7 +27,7 @@ const SideBar = () => {
           <img src={logo} alt="Logo UDG" className="w-2/3" />
           <div className="w-full pb-20">
             <h1 className="w-full pb-2 border-b-2 text-center text-4xl font-bold text-white">
-              Eventos UDG
+              Eventos CUSur
             </h1>
           </div>
         </div>

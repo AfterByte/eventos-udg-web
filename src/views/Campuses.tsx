@@ -14,6 +14,9 @@ import { Campus } from "../helpers/payloads";
 import { AuthContext, AuthProviderPayload } from "../components/AuthProvider";
 import { deleteCampus, getImage, indexCampuses } from "../helpers/apiClient";
 import { typeOf } from "../helpers/validationFunctions";
+/**ALERTS WITH SWEETALERT */
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export default function Campuses() {
   const { apiClient } = useContext(AuthContext) as AuthProviderPayload;
@@ -25,6 +28,19 @@ export default function Campuses() {
   const [showMessage, setShowMessage] = useState(false);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
+  /**CONST FOR USE SWEETALERT */
+  const MySwal = withReactContent(Swal);
+  const Toast = MySwal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", MySwal.stopTimer);
+      toast.addEventListener("mouseleave", MySwal.resumeTimer);
+    },
+  });
 
   const firstUpdate = useRef(true);
 
@@ -45,6 +61,10 @@ export default function Campuses() {
         setShownCampus(undefined);
         getCampuses();
         setShownImage("");
+        Toast.fire({
+          icon: "success",
+          title: "Campus eliminado correctamente",
+        });
       } else console.log(response);
     }
   };

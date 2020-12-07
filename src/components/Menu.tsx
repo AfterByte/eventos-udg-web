@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 // Context
 import { RespContextPayload, ResponsiveContext } from "./Routes";
+import { AuthContext, AuthProviderPayload } from "./AuthProvider";
 // Assets
 import Event from "../assets/icons/event.svg";
 import myEvents from "../assets/icons/myEvents.svg";
@@ -11,6 +12,8 @@ import nextEvent from "../assets/icons/nextEvent.svg";
 import location from "../assets/icons/location.svg";
 import udgSvg from "../assets/images/udgL.png";
 import Clear from "../assets/icons/clear-black.svg";
+import campus from "../assets/icons/campus.svg";
+import user from "../assets/icons/user.svg";
 
 /**Menu component
  * Redirect to the corresponding sections of each button
@@ -24,7 +27,7 @@ const Menu = () => {
   const closeSidebar = () => {
     if (!sidebarHidden) toggleSidebar();
   };
-
+  const { apiClient } = useContext(AuthContext) as AuthProviderPayload;
   return (
     <ul className="w-full">
       <button
@@ -42,7 +45,7 @@ const Menu = () => {
         <div className="flex">
           <img className="w-16 pb-3 " src={udgSvg} alt={"SortIcon"} />
           <h1 className="mt-4 text-3xl font-bold text-center text-white font-sans ">
-            Eventos UDG
+            Eventos CUSur
           </h1>
         </div>
       </li>
@@ -62,44 +65,45 @@ const Menu = () => {
           <p className="text-center">Proximos eventos</p>
         </Link>
       </li>
-
-      <li className="border-b-2 m-8">
-        <h1 className="mt-8 text-x font-semibold text-left text-white font-sans ">
-          Organizar eventos
-        </h1>
-      </li>
-
-      <li className="text-white m-8 font-sans">
-        <Link
-          className="flex rounded hover:bg-blue-500"
-          to="/events/new"
-          onClick={closeSidebar}
-        >
-          <img
-            className="mr-4 ml-8"
-            src={createEvent}
-            alt={"SortIcon"}
-            style={{ filter: "invert(100%)" }}
-          />
-          <p className="text-center">Crear evento</p>
-        </Link>
-      </li>
-
-      <li className="text-white m-8 font-sans">
-        <Link
-          className="flex rounded hover:bg-blue-500"
-          to="/events/owned"
-          onClick={closeSidebar}
-        >
-          <img
-            className="mr-4 ml-8"
-            src={myEvents}
-            alt={"SortIcon"}
-            style={{ filter: "invert(100%)" }}
-          />
-          <p className="text-center">Mis eventos</p>
-        </Link>
-      </li>
+      {apiClient.user?.role.name != "user" && (
+        <div>
+          <li className="border-b-2 m-8">
+            <h1 className="mt-8 text-x font-semibold text-left text-white font-sans ">
+              Organizar eventos
+            </h1>
+          </li>
+          <li className="text-white m-8 font-sans">
+            <Link
+              className="flex rounded hover:bg-blue-500"
+              to="/events/new"
+              onClick={closeSidebar}
+            >
+              <img
+                className="mr-4 ml-8"
+                src={createEvent}
+                alt={"SortIcon"}
+                style={{ filter: "invert(100%)" }}
+              />
+              <p className="text-center">Crear evento</p>
+            </Link>
+          </li>
+          <li className="text-white m-8 font-sans">
+            <Link
+              className="flex rounded hover:bg-blue-500"
+              to="/events/owned"
+              onClick={closeSidebar}
+            >
+              <img
+                className="mr-4 ml-8"
+                src={myEvents}
+                alt={"SortIcon"}
+                style={{ filter: "invert(100%)" }}
+              />
+              <p className="text-center">Mis eventos</p>
+            </Link>
+          </li>
+        </div>
+      )}
 
       <li className="border-b-2 m-8 ">
         <h1 className="mt-8 text-left font-semibold text-white font-sans ">
@@ -123,49 +127,60 @@ const Menu = () => {
         </Link>
       </li>
 
-      <li className="border-b-2 border-white m-8">
-        <h1 className="mt-8 text-x font-semibold text-left text-white font-sans  ">
-          Opciones de administrador
-        </h1>
-      </li>
-
-      <li className="text-white m-8 font-sans">
-        <Link
-          className="flex rounded hover:bg-blue-500"
-          to="/events"
-          onClick={closeSidebar}
-        >
-          <img
-            className="mr-4 ml-8"
-            src={nextEvent}
-            alt={"SortIcon"}
-            style={{ filter: "invert(100%)" }}
-          />
-          <p className="text-center">Todos los eventos</p>
-        </Link>
-      </li>
-
-      <li className="text-white m-8 font-sans">
-        <Link
-          className="flex rounded hover:bg-blue-500"
-          to="/locations"
-          onClick={closeSidebar}
-        >
-          <img className="mr-4 ml-8" src={location} alt={"SortIcon"} />
-          <p className="text-center">Ubicaciones</p>
-        </Link>
-      </li>
-
-      <li className="text-white m-8 font-sans">
-        <Link
-          className="flex rounded hover:bg-blue-500"
-          to="/campuses"
-          onClick={closeSidebar}
-        >
-          <img className="mr-4 ml-8" src={location} alt={"SortIcon"} />
-          <p className="text-center">Cámpuses</p>
-        </Link>
-      </li>
+      {apiClient.user?.role.name === "admin" && (
+        <div>
+          <li className="border-b-2 border-white m-8">
+            <h1 className="mt-8 text-x font-semibold text-left text-white font-sans  ">
+              Opciones de administrador
+            </h1>
+          </li>
+          <li className="text-white m-8 font-sans">
+            <Link
+              className="flex rounded hover:bg-blue-500"
+              to="/events"
+              onClick={closeSidebar}
+            >
+              <img
+                className="mr-4 ml-8"
+                src={nextEvent}
+                alt={"SortIcon"}
+                style={{ filter: "invert(100%)" }}
+              />
+              <p className="text-center">Todos los eventos</p>
+            </Link>
+          </li>
+          <li className="text-white m-8 font-sans">
+            <Link
+              className="flex rounded hover:bg-blue-500"
+              to="/locations"
+              onClick={closeSidebar}
+            >
+              <img className="mr-4 ml-8" src={location} alt={"SortIcon"} />
+              <p className="text-center">Ubicaciones</p>
+            </Link>
+          </li>
+          <li className="text-white m-8 font-sans">
+            <Link
+              className="flex rounded hover:bg-blue-500"
+              to="/campuses"
+              onClick={closeSidebar}
+            >
+              <img className="mr-4 ml-8" src={campus} alt={"SortIcon"} />
+              <p className="text-center">Cámpuses</p>
+            </Link>
+          </li>
+          <li className="text-white m-8 font-sans">
+            <Link
+              className="flex rounded hover:bg-blue-500"
+              to="/users"
+              onClick={closeSidebar}
+            >
+              <img className="mr-4 ml-8" src={user} alt={"SortIcon"} />
+              <p className="text-center">Usuarios</p>
+            </Link>
+          </li>
+        </div>
+      )}
     </ul>
   );
 };
