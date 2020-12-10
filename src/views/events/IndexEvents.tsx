@@ -201,7 +201,7 @@ export default function IndexEvents({ fetchOwned = false }: IndexEventsProps) {
                         }}
                         className="xl:text-lg mr-4 p-2 px-3 text-white bg-indigo-500 rounded-md shadow-sm transition duration-500 ease-in-out transform hover:-translate-y-1"
                       >
-                        Posponer evento
+                        Editar evento
                       </button>
                       <button
                         onClick={() => {

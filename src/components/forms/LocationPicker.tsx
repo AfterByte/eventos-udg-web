@@ -71,16 +71,16 @@ const LocationPicker = ({
   };
 
   useEffect(() => {
+    if (reservation) {
+      setShownLocation(reservation.location);
+      getEvents(reservation.location);
+      setShowCalendar(true);
+    }
     if (firstUpdate.current) {
-      if (reservation) {
-        setShownLocation(reservation.location);
-        getEvents(reservation.location);
-      }
-
       getLocations();
       firstUpdate.current = false;
     }
-  });
+  }, [reservation]);
 
   return (
     <div className="flex-grow flex flex-col overflow-hidden">
@@ -142,9 +142,6 @@ const LocationPicker = ({
                     start: event.reservation.start,
                     end: event.reservation.end,
                     id: event.id,
-                    color: `#${Math.floor(Math.random() * 16777215).toString(
-                      16
-                    )}`,
                   }))}
                   noEventsText="No hay eventos durante la semana seleccionada"
                   buttonText={{ today: "Hoy" }}

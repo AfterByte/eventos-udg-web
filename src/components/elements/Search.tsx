@@ -52,7 +52,7 @@ export const Search = <T extends any>({
   };
 
   const content = (
-    <div className="flex-grow flex flex-row">
+    <div className="flex-grow flex flex-row relative">
       <div className="flex flex-grow border border-gray-500 border-opacity-50">
         <img
           className={`${
@@ -107,7 +107,7 @@ export const Search = <T extends any>({
   return form ? (
     <form
       ref={wrapperRef}
-      className={`flex flex-row relative ${className}`}
+      className={`flex flex-row ${className}`}
       onSubmit={(e) => {
         e.preventDefault();
         send(input);
@@ -116,7 +116,7 @@ export const Search = <T extends any>({
       {content}
     </form>
   ) : (
-    <div ref={wrapperRef} className={`flex flex-row relative ${className}`}>
+    <div ref={wrapperRef} className={`flex flex-row ${className}`}>
       {content}
     </div>
   );

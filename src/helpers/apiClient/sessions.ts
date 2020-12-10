@@ -24,6 +24,8 @@ export async function refreshToken(
       if (response.status < 300) {
         client.token = detachToken(response);
         localStorage.setItem("pipo", client.token);
+      } else {
+        await signOut(client);
       }
       const body = await detachBody(response);
       return { body, status: response.status };

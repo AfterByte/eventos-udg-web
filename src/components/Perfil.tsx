@@ -29,8 +29,8 @@ const Perfil = () => {
         </p>
         <img className="ml-4 h-8 md:h-10" src={UserIcon} alt={"UserIcon"} />
       </button>
-      {isOpen ? (
-        <div className="absolute text-center bg-white border mt-3 md:mt-5 right-0">
+      {isOpen && (
+        <div className="absolute text-center bg-white border mt-3 md:mt-5 right-0 z-10">
           <a
             className="border block px-6 py-2 hover:bg-indigo-500 hover:text-white"
             href="#"
@@ -45,7 +45,7 @@ const Perfil = () => {
             Cerrar Sesión
           </button>
         </div>
-      ) : null}
+      )}
     </div>
   );
 };

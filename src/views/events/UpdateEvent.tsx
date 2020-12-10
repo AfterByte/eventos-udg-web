@@ -49,7 +49,7 @@ export default function UpdateEvent() {
     <div className="flex flex-row h-screen">
       <SideBar />
       <div className="flex-grow bg-indigo-500 bg-opacity-50 relative flex flex-col">
-        <Header barTitle="Crear evento" />
+        <Header barTitle="Editar evento" />
         <ProgresiveBar
           setCurrentSection={setCurrent}
           currentSection={current}

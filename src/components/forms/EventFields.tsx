@@ -88,7 +88,7 @@ export default function EventFields({
       <div className="flex w-full">
         <div className="flex flex-col w-6/12">
           <label
-            htmlFor="startEventHour"
+            htmlFor="startHour"
             className="ml-4 mt-4 mb-2 text-xl font-semibold"
           >
             Inicio del evento
@@ -104,8 +104,8 @@ export default function EventFields({
 
         <div className="flex flex-col w-6/12 mt-1">
           <Field
-            id="startEventHour"
-            name="startEventHour"
+            id="startHour"
+            name="startHour"
             type="time"
             className="border-2 border-gray-500 py-2 mr-24 rounded-md px-2 mt-12"
           />
@@ -117,7 +117,7 @@ export default function EventFields({
       <div className="flex w-full">
         <div className="flex flex-col w-6/12">
           <label
-            htmlFor="endEventHour"
+            htmlFor="endHour"
             className="ml-4 mt-4 mb-2 text-xl font-semibold"
           >
             Fin del evento
@@ -133,8 +133,8 @@ export default function EventFields({
 
         <div className="flex flex-col w-6/12 mt-1">
           <Field
-            id="endEventHour"
-            name="endEventHour"
+            id="endHour"
+            name="endHour"
             type="time"
             className="border-2 border-gray-500 py-2 mr-24 rounded-md px-2 mt-12"
           />

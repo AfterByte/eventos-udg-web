@@ -53,7 +53,9 @@ export const getDateHour = (date?: Date | string) => {
   if (!date) return "";
   if (typeof date === "string") date = new Date(date);
 
-  return `${date.getHours}:${date.getMinutes}`;
+  const fixNumFormat = (n: number) => (n > 10 ? `${n}` : `0${n}`);
+
+  return `${fixNumFormat(date.getHours())}:${fixNumFormat(date.getMinutes())}`;
 };
 
 export const toDateTime = (date: string | Date, hour: string) => {

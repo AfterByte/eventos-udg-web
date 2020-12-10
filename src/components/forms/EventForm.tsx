@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // Custom components
 import { Form, Formik } from "formik";
 import EventFields from "./EventFields";
@@ -20,6 +20,7 @@ import {
 } from "../../helpers/apiClient";
 import { AuthContext, AuthProviderPayload } from "../AuthProvider";
 import {
+  dateToIso,
   getDateHour,
   toDateTime,
   typeOf,
@@ -58,7 +59,7 @@ const EventForm = ({ event, reservation }: EventFormProps) => {
         startHour: getDateHour(event?.reservation.start),
         endHour: getDateHour(event?.reservation.end),
         capacity: event?.capacity || 0,
-        tags: event?.tags.map((tag) => tag.name) || [],
+        tags: event?.tags.map((tag) => ({ name: tag.name })) || [],
         guests: event?.guests || [],
         reservation: reservation,
       }}
@@ -72,12 +73,13 @@ const EventForm = ({ event, reservation }: EventFormProps) => {
           description: values.description,
           reservation: {
             locationId: reservation.location.id,
-            start: toDateTime(reservation.start, values.startHour).toString(),
-            end: toDateTime(reservation.end, values.endHour).toString(),
+            start: `${dateToIso(reservation.start)} ${values.startHour}`,
+            end: `${dateToIso(reservation.end)} ${values.endHour}`,
           },
           tags: values.tags,
           people: values.guests.map((guest) => guest.id),
         };
+        console.log(payload);
         // Make request
         if (event) response = await updateEvent(apiClient, event.id, payload);
         else response = await createEvent(apiClient, payload, values.image);
@@ -104,7 +106,7 @@ const EventForm = ({ event, reservation }: EventFormProps) => {
                 type="submit"
                 className="px-3 py-2 mt-10 text-white text-lg xl:py-2 bg-teal-500 rounded-md shadow-sm transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100"
               >
-                <p>Crear evento</p>
+                <p>{event ? "Editar " : "Crear "}evento</p>
               </button>
             </div>
           </div>

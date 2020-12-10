@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // Custom components
 import FullCalendar, { DateSelectArg } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -21,12 +21,13 @@ const ReservationCalendar = ({
   hide,
   confirmAction,
 }: ReservationCalendarProps) => {
-  const [start, setStart] = useState(dateToIso(reservation?.start));
-  const [end, setEnd] = useState(dateToIso(reservation?.start));
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
 
   const clickDate = ({ dateStr, date }: DateClickArg) => {
+    dateStr = dateStr.split("-").join("/");
     if (!start) setStart(dateStr);
-    else if (!end && date > new Date(start)) setEnd(dateStr);
+    else if (!end && date >= new Date(start)) setEnd(dateStr);
     else {
       setStart(dateStr);
       setEnd("");
@@ -34,9 +35,14 @@ const ReservationCalendar = ({
   };
 
   const selectDate = ({ startStr, endStr }: DateSelectArg) => {
-    setStart(startStr);
-    setEnd(endStr);
+    setStart(startStr.split("-").join("/"));
+    setEnd(endStr.split("-").join("/"));
   };
+
+  useEffect(() => {
+    setStart(dateToIso(reservation?.start));
+    setEnd(dateToIso(reservation?.end));
+  }, [reservation]);
 
   return (
     <div className="absolute top-0 bg-black bg-opacity-25 w-full h-full flex flex-col justify-center">
